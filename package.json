@@ -1,0 +1,34 @@
+{
+  "name": "meta-wall_frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 5050",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "pinia": "^2.0.13",
+    "vue": "^3.2.33",
+    "vue-router": "^4.0.14"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.1.0",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "eslint": "^8.5.0",
+    "eslint-plugin-vue": "^8.2.0",
+    "postcss": "^8.4.12",
+    "postcss-html": "^1.4.1",
+    "postcss-scss": "^4.0.4",
+    "prettier": "^2.5.1",
+    "stylelint": "^14.8.1",
+    "stylelint-config-recommended-vue": "^1.4.0",
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-config-standard-scss": "^3.0.0",
+    "stylelint-order": "^5.0.0",
+    "vite": "^2.9.5",
+    "vite-plugin-stylelint": "^2.2.1"
+  }
+}
