@@ -5,6 +5,8 @@ import HelloWorld from '@/components/HelloWorld.vue'
 
 <template>
   <header>
+    <h1 class="text-3xl font-bold text-red-500 underline">Hello world!</h1>
+    <textarea class="caret-pink-500"></textarea>
     <img
       alt="Vue logo"
       class="logo"

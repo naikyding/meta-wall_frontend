@@ -10,8 +10,12 @@ module.exports = {
   ],
   env: {
     'vue/setup-compiler-macros': true,
+    browser: true,
+    amd: true,
+    node: true,
   },
   rules: {
+    'no-undef': 'error',
     // quotes: ['error', 'single'],
   },
 }

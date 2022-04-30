@@ -25,11 +25,12 @@ module.exports = {
     'selector-no-qualifying-type': null,
     'selector-class-pattern': null,
     'function-parentheses-newline-inside': null,
-    'at-rule-no-unknown': null,
+    "at-rule-no-unknown": null,
     'color-function-notation': 'legacy',
     'alpha-value-notation': 'number',
     'scss/no-global-function-names': null,
     'scss/comment-no-empty': null,
+    'scss/at-rule-no-unknown': null,
     'order/properties-order': [
       'position',
       'top',
