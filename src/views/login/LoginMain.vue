@@ -20,7 +20,9 @@ onUpdated(() => {
 
 <template>
   <div class="flex justify-center items-center h-screen">
-    <div class="md:flex items-center bg-baseBg p-10 shadow-card">
+    <div
+      class="md:flex items-center bg-baseBg p-10 shadow-card border-2 border-black"
+    >
       <!-- img -->
       <div class="img mr-12">
         <img src="/images/main.png" alt="meta-wall" />
