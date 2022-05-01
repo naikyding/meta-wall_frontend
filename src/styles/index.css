@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@300&family=Paytone+One&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .base-input {
+    @apply h-12 block border-2 border-black px-6 py-4 w-full mb-1 mt-4 focus:outline-none focus:border-secondary font-input;
+  }
+
+  .base-button {
+    @apply w-full bg-primary hover:bg-secondary py-1 border-2 border-black rounded-lg h-12 focus:outline-none focus:ring text-white hover:text-black shadow-base mb-4 mt-6;
+  }
+}
