@@ -1,7 +1,9 @@
 <script setup>
 import { useAppStore } from '@/stores/app'
+import { useUserStore } from '@/stores/user'
 
 const appStore = useAppStore()
+const userStore = useUserStore()
 
 const dropdownToggle = () => {
   appStore.disableMemberItem = !appStore.disableMemberItem
@@ -24,7 +26,7 @@ const dropdownToggle = () => {
             class="avatar w-[30px] h-[30px] border-2 rounded-full mr-[10px] overflow-hidden"
           >
             <img
-              src="https://picsum.photos/200/300"
+              :src="userStore.data.avatar"
               class="object-cover w-full h-full"
               alt=""
             />

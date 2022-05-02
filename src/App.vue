@@ -1,7 +1,8 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import NavigationMenu from '../src/components/NavigationMenu.vue'
+import NavigationMenu from '@/components/NavigationMenu.vue'
 import { useAppStore } from './stores/app'
+import BottomNavigation from '@/components/BottomNavigation.vue'
 
 const appStore = useAppStore()
 </script>
@@ -11,8 +12,8 @@ const appStore = useAppStore()
     class="bg-grid bg-[length:63px_63px] bg-baseBg bg-center h-screen relative"
   >
     <NavigationMenu :class="{ hidden: appStore.navStatus }" />
-
     <RouterView class="font-dec text-black mt-[60px]" />
+    <BottomNavigation />
   </div>
 </template>
 
