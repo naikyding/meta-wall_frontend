@@ -18,6 +18,7 @@ module.exports = {
       boxShadow: {
         base: '-2px 2px 0px #000400',
         card: '-8px 8px 0px #00040029',
+        post: '0px 3px 0px black',
       },
     },
   },
