@@ -8,18 +8,21 @@ import { useRoute } from 'vue-router'
 const loginStore = useLoginStore()
 const route = useRoute()
 const formComponents = [LoginForm, registerForm]
+const checkComponentActive = (routerName) => {
+  loginStore.activeComponentIndex = routerName === '/register' ? 1 : 0
+}
 
 onMounted(() => {
-  loginStore.activeComponentIndex = route.path === '/register' ? 1 : 0
+  checkComponentActive(route.path)
 })
 
 onUpdated(() => {
-  loginStore.activeComponentIndex = route.path === '/register' ? 1 : 0
+  checkComponentActive(route.path)
 })
 </script>
 
 <template>
-  <div class="flex justify-center items-center h-full">
+  <div class="flex justify-center items-center h-full mt-0">
     <div
       class="md:flex items-center bg-baseBg p-10 shadow-card border-2 border-black"
     >
@@ -29,7 +32,9 @@ onUpdated(() => {
       ></div>
       <!-- 表單 -->
       <div class="input-area text-center">
-        <div class="logo text-primary text-6xl font-logo title">MetaWall</div>
+        <div class="title">
+          <a class="logo text-primary text-6xl font-logo" href="/">MetaWall</a>
+        </div>
         <component :is="formComponents[loginStore.activeComponentIndex]">
         </component>
         <form id="user-data-form" class="flex"></form>
