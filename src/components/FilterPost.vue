@@ -30,7 +30,7 @@
         placeholder="搜尋貼文"
       />
       <button
-        class="bg-primary hover:bg-secondary hover:text-black w-[46px] h-[46px] text-white grow-0 flex-all-center absolute right-0 border-l-2 border-black"
+        class="bg-primary hover:bg-secondary hover:text-black w-[46px] h-[46px] text-white grow-0 flex-all-center absolute right-0 border-l-2 border-black active:bg-primary"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
