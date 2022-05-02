@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import MetaHome from '../views/MetaHome.vue'
 import { useAppStore } from '../stores/app'
 
 const router = createRouter({
@@ -8,7 +8,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: MetaHome,
     },
     {
       path: '/about',
@@ -35,7 +35,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const appStore = useAppStore()
-  console.log(to.name)
   appStore.routerName = to.name
   next()
 })
