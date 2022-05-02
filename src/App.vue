@@ -1,10 +1,18 @@
 <script setup>
 import { RouterView } from 'vue-router'
+import NavigationMenu from '../src/components/NavigationMenu.vue'
+import { useAppStore } from './stores/app'
+
+const appStore = useAppStore()
 </script>
 
 <template>
-  <div class="bg-grid bg-[length:63px_63px] bg-baseBg bg-center h-screen">
-    <RouterView class="font-dec text-black" />
+  <div
+    class="bg-grid bg-[length:63px_63px] bg-baseBg bg-center h-screen relative"
+  >
+    <NavigationMenu :class="{ hidden: appStore.navStatus }" />
+
+    <RouterView class="font-dec text-black mt-[60px]" />
   </div>
 </template>
 
