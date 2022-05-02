@@ -11,6 +11,7 @@ const user = useUserStore()
     <li>
       <button class="base-button">張貼動態</button>
     </li>
+
     <li>
       <a href="" class="flex items-center group">
         <div class="avatar overflow-hidden item">
@@ -49,7 +50,7 @@ const user = useUserStore()
 
     <!-- 讚 -->
     <li class="flex items-center">
-      <a href="" class="group flex items-center hover:text-primary">
+      <a href="" class="group flex items-center hover:text-primary w-full">
         <div class="item flex-all-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -74,6 +75,6 @@ const user = useUserStore()
 
 <style>
 .item {
-  @apply w-[40px] h-[40px] lg:w-[50px] lg:h-[50px] border-2 border-black rounded-full mr-2 lg:mr-4 bg-[#E2EDFA] group-hover:bg-primary;
+  @apply w-[35px] h-[35px] lg:w-[50px] lg:h-[50px] border-2 border-black rounded-full mr-2 lg:mr-4 bg-[#E2EDFA] group-hover:bg-primary;
 }
 </style>
