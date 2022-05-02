@@ -19,7 +19,7 @@ onUpdated(() => {
 </script>
 
 <template>
-  <div class="flex justify-center items-center h-screen">
+  <div class="flex justify-center items-center h-full">
     <div
       class="md:flex items-center bg-baseBg p-10 shadow-card border-2 border-black"
     >
