@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { useAppStore } from '../stores/app'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -30,6 +31,13 @@ const router = createRouter({
       component: () => import('../views/login/LoginMain.vue'),
     },
   ],
+})
+
+router.beforeEach((to, from, next) => {
+  const appStore = useAppStore()
+  console.log(to.name)
+  appStore.routerName = to.name
+  next()
 })
 
 export default router
