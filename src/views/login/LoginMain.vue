@@ -22,13 +22,13 @@ onUpdated(() => {
 </script>
 
 <template>
-  <div class="flex justify-center items-center h-full mt-0">
+  <div class="flex justify-center items-center py-4 md:py-0 mt-0 h-full">
     <div
-      class="md:flex items-center bg-baseBg p-10 shadow-card border-2 border-black"
+      class="md:flex items-center bg-baseBg p-6 lg:p-10 shadow-card border-2 border-black"
     >
       <!-- img -->
       <div
-        class="w-[350px] h-[341px] img mr-12 bg-[url('/images/main.png')] bg-cover"
+        class="w-[300px] lg:w-[350px] h-[200px] md:h-[341px] img mr-0 lg:mr-12 bg-[url('/images/main.png')] bg-contain bg-no-repeat bg-center"
       ></div>
       <!-- 表單 -->
       <div class="input-area text-center">
