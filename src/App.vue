@@ -9,11 +9,15 @@ const appStore = useAppStore()
 
 <template>
   <div
-    class="bg-grid bg-[length:63px_63px] bg-baseBg bg-center h-screen relative overflow-y-auto pb-[100px] md:pb-16"
+    class="bg-grid bg-[length:63px_63px] bg-baseBg bg-center h-screen relative overflow-y-auto"
+    :class="{ 'pb-[100px] md:pb-16': !appStore.navStatus }"
   >
     <NavigationMenu :class="{ hidden: appStore.navStatus }" />
-    <RouterView class="font-dec text-black pt-[60px]" />
-    <BottomNavigation />
+    <RouterView
+      class="font-dec text-black"
+      :class="{ 'pt-[60px]': !appStore.navStatus }"
+    />
+    <BottomNavigation :class="{ hidden: appStore.navStatus }" />
   </div>
 </template>
 
