@@ -66,7 +66,7 @@
 
       <!-- 送出貼文 -->
       <button
-        class="rounded h-[54px] w-[323px] px-8 py-1 mt-4 border-2 border-black"
+        class="rounded-lg h-[54px] w-[323px] px-8 py-1 mt-4 border-2 border-black shadow-base"
         :class="[newPost.submitBtnStatus]"
       >
         送出貼文
