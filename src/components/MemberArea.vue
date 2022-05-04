@@ -1,15 +1,17 @@
 <script setup>
 import { useUserStore } from '@/stores/user'
+
 const user = useUserStore()
 </script>
-
 <template>
   <ul
     class="bg-white border-2 border-black px-2 lg:px-6 pb-8 font-bold text-sm xl:text-base"
   >
     <!-- 張貼動態 -->
     <li>
-      <button class="base-button">張貼動態</button>
+      <button @click="$router.push({ path: '/new-post' })" class="base-button">
+        張貼動態
+      </button>
     </li>
 
     <li>
