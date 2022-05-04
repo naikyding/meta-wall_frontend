@@ -1,5 +1,7 @@
 <template>
-  <div class="post-area border-2 border-black bg-white rounded-lg mt-4 p-8">
+  <div
+    class="post-area border-2 border-black bg-white rounded-lg mt-4 p-8 shadow-post"
+  >
     <label>
       貼文內容
       <textarea
