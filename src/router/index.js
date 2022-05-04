@@ -2,6 +2,13 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import MetaHome from '../views/MetaHome.vue'
 import { useAppStore } from '../stores/app'
 
+import FilterPost from '@/components/FilterPost.vue'
+import PostList from '@/components/PostList.vue'
+
+import TitleArea from '@/components/TitleArea.vue'
+
+import NewPostForm from '../views/post/NewPostForm.vue'
+
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
@@ -9,6 +16,26 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: MetaHome,
+      children: [
+        // 首頁
+        {
+          path: '',
+          name: 'index',
+          components: {
+            'content-top': FilterPost,
+            'content-bottom': PostList,
+          },
+        },
+        // 張貼
+        {
+          path: 'new-post',
+          name: 'post',
+          components: {
+            'content-top': TitleArea,
+            'content-bottom': NewPostForm,
+          },
+        },
+      ],
     },
     {
       path: '/about',
