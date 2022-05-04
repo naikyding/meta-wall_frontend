@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import { RouterLink } from 'vue-router'
+</script>
 
 <template>
   <nav class="fixed bottom-4 left-0 w-full px-4 block md:hidden">
@@ -7,7 +9,7 @@
     >
       <!-- home -->
       <li class="">
-        <a href="" class="router-item bg-white hover:bg-[#E2EDFA]">
+        <a href="/" class="router-item bg-white hover:bg-[#E2EDFA]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"
@@ -67,7 +69,10 @@
 
       <!-- 新增貼文 -->
       <li class="">
-        <a href="" class="router-item bg-primary hover:bg-secondary">
+        <RouterLink
+          to="/new-post"
+          class="router-item bg-primary hover:bg-secondary"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6 text-white"
@@ -82,7 +87,7 @@
               d="M12 4v16m8-8H4"
             />
           </svg>
-        </a>
+        </RouterLink>
       </li>
     </ul>
   </nav>
