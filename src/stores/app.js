@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 const routerTitle = {
   likes: '我按讚的貼文',
   post: '張貼動態',
-  follow: '追蹤名單',
+  follows: '追蹤名單',
   profile: '修改個人資料',
 }
 
