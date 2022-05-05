@@ -1,5 +1,6 @@
 <script setup>
 import { useUserStore } from '@/stores/user'
+import { RouterLink } from 'vue-router'
 
 const user = useUserStore()
 </script>
@@ -29,7 +30,10 @@ const user = useUserStore()
 
     <!-- 追蹤名單 -->
     <li class="my-[22px]">
-      <a href="" class="group flex items-center hover:text-primary">
+      <RouterLink
+        to="/follows"
+        class="group flex items-center hover:text-primary"
+      >
         <div class="item flex-all-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +51,7 @@ const user = useUserStore()
           </svg>
         </div>
         <div class="user-name group-hover:text-primary">追蹤名單</div>
-      </a>
+      </RouterLink>
     </li>
 
     <!-- 讚 -->

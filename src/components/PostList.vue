@@ -1,18 +1,14 @@
 <script setup>
 import { useUserStore } from '@/stores/user'
+import { usePostStore } from '@/stores/posts'
 const userStore = useUserStore()
-const props = defineProps({
-  list: {
-    type: Array,
-    required: true,
-  },
-})
+const postStore = usePostStore()
 </script>
 
 <template>
   <!-- 沒有貼文 -->
   <div
-    v-if="props.list.length < 1"
+    v-if="postStore.list.length < 1"
     class="no-data w-full bg-white border-2 border-black rounded-lg mt-4 shadow-post"
   >
     <div class="bar flex py-5 border-b-2 px-4">
@@ -29,7 +25,7 @@ const props = defineProps({
   <div v-else>
     <!-- item-->
     <div
-      v-for="item in props.list"
+      v-for="item in postStore.list"
       :key="item"
       class="w-full bg-white border-2 border-black rounded-lg mt-4 shadow-post p-6"
     >
