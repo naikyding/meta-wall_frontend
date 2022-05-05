@@ -7,6 +7,7 @@ import PostList from '@/components/PostList.vue'
 import TitleArea from '@/components/TitleArea.vue'
 import NewPostForm from '../views/post/NewPostForm.vue'
 import Follows from '../views/FollowsIndex.vue'
+import Likes from '../views/LikesMain.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -41,6 +42,15 @@ const router = createRouter({
           components: {
             'content-top': TitleArea,
             'content-bottom': Follows,
+          },
+        },
+        // 按讚
+        {
+          path: 'likes',
+          name: 'likes',
+          components: {
+            'content-top': TitleArea,
+            'content-bottom': Likes,
           },
         },
       ],
