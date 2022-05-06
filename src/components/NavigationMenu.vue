@@ -1,6 +1,7 @@
 <script setup>
 import { useAppStore } from '@/stores/app'
 import { useUserStore } from '@/stores/user'
+import { RouterLink } from 'vue-router'
 
 const appStore = useAppStore()
 const userStore = useUserStore()
@@ -45,7 +46,11 @@ const dropdownToggle = () => {
             <a href="" class="block">我的貼文牆</a>
           </li>
           <li class="py-2 hover:bg-baseBg border-y-2">
-            <a href="" class="block">修改個人資料</a>
+            <RouterLink
+              :to="{ path: `/profile/${userStore.userId}` }"
+              class="block"
+              >修改個人資料</RouterLink
+            >
           </li>
           <li class="py-2 hover:bg-baseBg">
             <a href="" class="block">登出</a>
