@@ -44,9 +44,7 @@ const dropdownToggle = () => {
           <li class="py-2 hover:bg-baseBg">
             <a href="" class="block">我的貼文牆</a>
           </li>
-          <li
-            class="py-2 hover:bg-baseBg border-y-2 我的貼文牆 修改個人資料 登出"
-          >
+          <li class="py-2 hover:bg-baseBg border-y-2">
             <a href="" class="block">修改個人資料</a>
           </li>
           <li class="py-2 hover:bg-baseBg">

@@ -56,7 +56,10 @@ const user = useUserStore()
 
     <!-- 讚 -->
     <li class="flex items-center">
-      <a href="" class="group flex items-center hover:text-primary w-full">
+      <RouterLink
+        to="/likes"
+        class="group flex items-center hover:text-primary w-full"
+      >
         <div class="item flex-all-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +77,7 @@ const user = useUserStore()
           </svg>
         </div>
         <div class="user-name group-hover:text-primary">我按讚的文章</div>
-      </a>
+      </RouterLink>
     </li>
   </ul>
 </template>
