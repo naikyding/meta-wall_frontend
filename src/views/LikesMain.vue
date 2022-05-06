@@ -21,7 +21,11 @@ const followStore = useFollowsStore()
     </div>
     <div class="user-data grow">
       <p class="font-bold">
-        <a class="underline hover:text-primary" href="">{{ user.name }}</a>
+        <RouterLink
+          :to="{ path: `/user/${123}` }"
+          class="underline hover:text-primary"
+          >{{ user.name }}</RouterLink
+        >
       </p>
       <div
         class="user-data__time flex flex-col sm:flex-row justify-between text-sm"

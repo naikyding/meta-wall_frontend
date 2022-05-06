@@ -9,6 +9,7 @@ import NewPostForm from '../views/post/NewPostForm.vue'
 import Follows from '../views/FollowsIndex.vue'
 import Likes from '../views/LikesMain.vue'
 import Profile from '../views/profile/ProfileMain.vue'
+import userMain from '../views/UserMain.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -61,6 +62,15 @@ const router = createRouter({
           components: {
             'content-top': TitleArea,
             'content-bottom': Profile,
+          },
+        },
+        // 個人頁
+        {
+          path: 'user/:id',
+          name: 'user',
+          components: {
+            'content-top': userMain,
+            'content-bottom': PostList,
           },
         },
       ],

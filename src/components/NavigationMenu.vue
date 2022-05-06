@@ -43,7 +43,9 @@ const dropdownToggle = () => {
           v-click-away="dropdownToggle"
         >
           <li class="py-2 hover:bg-baseBg">
-            <a href="" class="block">我的貼文牆</a>
+            <RouterLink :to="{ path: `/user/${123}` }" class="block"
+              >我的貼文牆</RouterLink
+            >
           </li>
           <li class="py-2 hover:bg-baseBg border-y-2">
             <RouterLink
