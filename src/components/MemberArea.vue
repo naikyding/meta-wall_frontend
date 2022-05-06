@@ -16,7 +16,10 @@ const user = useUserStore()
     </li>
 
     <li>
-      <a href="" class="flex items-center group">
+      <RouterLink
+        :to="{ path: `/user/${123}` }"
+        class="flex items-center group"
+      >
         <div class="avatar overflow-hidden item">
           <img
             :src="user.data.avatar"
@@ -25,7 +28,7 @@ const user = useUserStore()
           />
         </div>
         <div class="user-name group-hover:text-primary">邊緣小杰</div>
-      </a>
+      </RouterLink>
     </li>
 
     <!-- 追蹤名單 -->
