@@ -1,7 +1,10 @@
 <script setup>
 import { useAppStore } from '@/stores/app'
+import { useUserStore } from '@/stores/user'
+import { RouterLink } from 'vue-router'
 
 const appStore = useAppStore()
+const userStore = useUserStore()
 
 const dropdownToggle = () => {
   appStore.disableMemberItem = !appStore.disableMemberItem
@@ -10,10 +13,10 @@ const dropdownToggle = () => {
 
 <template>
   <nav
-    class="px-4 md:px-0 menu grid grid-cols-5 gap-0 bg-white h-[60px] fixed top-0 left-0 right-0"
+    class="px-4 md:px-12 lg:px-0 menu grid grid-cols-5 gap-0 bg-white h-[60px] fixed top-0 left-0 right-0 border-b-[3px] border-black z-10"
   >
     <ul
-      class="font-logo col-start-1 md:col-start-2 col-span-5 md:col-span-3 flex justify-between"
+      class="font-logo col-start-1 lg:col-start-2 col-span-5 lg:col-span-3 flex justify-between"
     >
       <li class="my-auto">
         <a href="/" class="text-black text-2xl">MetaWall</a>
@@ -24,7 +27,7 @@ const dropdownToggle = () => {
             class="avatar w-[30px] h-[30px] border-2 rounded-full mr-[10px] overflow-hidden"
           >
             <img
-              src="https://picsum.photos/200/300"
+              :src="userStore.data.avatar"
               class="object-cover w-full h-full"
               alt=""
             />
@@ -40,12 +43,16 @@ const dropdownToggle = () => {
           v-click-away="dropdownToggle"
         >
           <li class="py-2 hover:bg-baseBg">
-            <a href="" class="block">我的貼文牆</a>
+            <RouterLink :to="{ path: `/user/${123}` }" class="block"
+              >我的貼文牆</RouterLink
+            >
           </li>
-          <li
-            class="py-2 hover:bg-baseBg border-y-2 我的貼文牆 修改個人資料 登出"
-          >
-            <a href="" class="block">修改個人資料</a>
+          <li class="py-2 hover:bg-baseBg border-y-2">
+            <RouterLink
+              :to="{ path: `/profile/${userStore.userId}` }"
+              class="block"
+              >修改個人資料</RouterLink
+            >
           </li>
           <li class="py-2 hover:bg-baseBg">
             <a href="" class="block">登出</a>

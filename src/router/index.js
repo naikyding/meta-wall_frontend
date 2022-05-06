@@ -1,6 +1,15 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import MetaHome from '../views/MetaHome.vue'
 import { useAppStore } from '../stores/app'
+
+import FilterPost from '@/components/FilterPost.vue'
+import PostList from '@/components/PostList.vue'
+import TitleArea from '@/components/TitleArea.vue'
+import NewPostForm from '../views/post/NewPostForm.vue'
+import Follows from '../views/FollowsIndex.vue'
+import Likes from '../views/LikesMain.vue'
+import Profile from '../views/profile/ProfileMain.vue'
+import userMain from '../views/UserMain.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -8,7 +17,63 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: MetaHome,
+      children: [
+        // 首頁
+        {
+          path: '',
+          name: 'index',
+          components: {
+            'content-top': FilterPost,
+            'content-bottom': PostList,
+          },
+        },
+        // 張貼
+        {
+          path: 'new-post',
+          name: 'post',
+          components: {
+            'content-top': TitleArea,
+            'content-bottom': NewPostForm,
+          },
+        },
+        // 跟隨
+        {
+          path: 'follows',
+          name: 'follows',
+          components: {
+            'content-top': TitleArea,
+            'content-bottom': Follows,
+          },
+        },
+        // 按讚
+        {
+          path: 'likes',
+          name: 'likes',
+          components: {
+            'content-top': TitleArea,
+            'content-bottom': Likes,
+          },
+        },
+        // 個人資料
+        {
+          path: 'profile/:id',
+          name: 'profile',
+          components: {
+            'content-top': TitleArea,
+            'content-bottom': Profile,
+          },
+        },
+        // 個人頁
+        {
+          path: 'user/:id',
+          name: 'user',
+          components: {
+            'content-top': userMain,
+            'content-bottom': PostList,
+          },
+        },
+      ],
     },
     {
       path: '/about',
@@ -35,7 +100,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const appStore = useAppStore()
-  console.log(to.name)
   appStore.routerName = to.name
   next()
 })

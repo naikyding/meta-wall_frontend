@@ -12,4 +12,8 @@
   .base-button {
     @apply w-full bg-primary hover:bg-secondary py-1 border-2 border-black rounded-lg h-12 focus:outline-none focus:ring text-white hover:text-black shadow-base mb-4 mt-6;
   }
+
+  .flex-all-center {
+    @apply flex justify-center items-center;
+  }
 }
