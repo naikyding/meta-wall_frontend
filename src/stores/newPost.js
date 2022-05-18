@@ -80,6 +80,8 @@ export const useNewPostStore = defineStore('New Post Store', {
     },
 
     async submitPost() {
+      if (this.imageOverSize || !this.form.content) return false
+
       const form = new FormData()
       form.append('content', this.form.content)
 
