@@ -39,7 +39,7 @@
       <div
         v-show="newPost.previewImg.url"
         @click="newPost.removePreview"
-        class="text-center text-primary hover:text-secondary remove-img absolute top-4 right-4"
+        class="text-center text-white hover:text-secondary remove-img absolute top-4 left-4"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
