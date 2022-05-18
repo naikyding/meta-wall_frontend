@@ -13,3 +13,5 @@ app.use(router)
 app.use(VueClickAway)
 
 app.mount('#app')
+
+export default app

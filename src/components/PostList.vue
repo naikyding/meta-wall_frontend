@@ -1,14 +1,20 @@
 <script setup>
 import { useUserStore } from '@/stores/user'
 import { usePostStore } from '@/stores/posts'
+import { onMounted } from 'vue'
+
 const userStore = useUserStore()
 const postStore = usePostStore()
+
+onMounted(() => {
+  postStore.getPostsList()
+})
 </script>
 
 <template>
   <!-- 沒有貼文 -->
   <div
-    v-if="postStore.list.length < 1"
+    v-if="postStore.list?.length < 1"
     class="no-data w-full bg-white border-2 border-black rounded-lg mt-4 shadow-post"
   >
     <div class="bar flex py-5 border-b-2 px-4">
@@ -26,30 +32,34 @@ const postStore = usePostStore()
     <!-- item-->
     <div
       v-for="item in postStore.list"
-      :key="item"
+      :key="item._id"
       class="w-full bg-white border-2 border-black rounded-lg mt-4 shadow-post p-6"
     >
       <!-- 貼文者 -->
       <div class="post-user flex items-center">
         <!-- 頭像 -->
         <div class="avatar overflow-hidden item mr-4">
-          <img :src="item.avatar" class="object-cover h-full w-full" alt="" />
+          <img
+            :src="item.user?.avatar"
+            class="object-cover h-full w-full"
+            alt=""
+          />
         </div>
         <div class="user-dec">
-          <p class="font-bold">{{ item.name }}</p>
+          <p class="font-bold">{{ item.user?.nickname }}</p>
           <p class="text-xs text-[#9B9893]">{{ item.createdAt }}</p>
         </div>
       </div>
 
-      <!-- 內容 -->
-      <div class="content mt-4">
-        {{ item.content }}
-      </div>
-
       <details>
         <summary class="list-none focus:outline-none cursor-pointer">
+          <!-- 內容 -->
+          <div class="content mt-4">
+            {{ item.content }}
+          </div>
+
           <!-- 圖片 -->
-          <div class="image my-4">
+          <div v-show="item.image" class="image my-4">
             <img
               class="border-2 border-black rounded-lg w-full"
               :src="item.image"
@@ -78,8 +88,11 @@ const postStore = usePostStore()
                   d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
                 />
               </svg>
-              <span v-show="item.likes.length > 0" class="text-sm text-primary">
-                {{ item.likes.length }}</span
+              <span
+                v-show="item.likes?.length > 0"
+                class="text-sm text-primary"
+              >
+                {{ item.likes?.length }}</span
               >
             </button>
 
@@ -89,7 +102,7 @@ const postStore = usePostStore()
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6 mr-1"
                 :class="[
-                  item.comment.length > 0 ? 'text-primary' : 'text-[#9B9893]',
+                  item.comments?.length > 0 ? 'text-primary' : 'text-[#9B9893]',
                 ]"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -103,10 +116,10 @@ const postStore = usePostStore()
                 />
               </svg>
               <span
-                v-show="item.comment.length > 0"
+                v-show="item.comments?.length > 0"
                 class="text-sm text-primary"
               >
-                {{ item.comment.length }}</span
+                {{ item.comments?.length }}</span
               >
             </button>
           </div>
@@ -143,7 +156,7 @@ const postStore = usePostStore()
           <div class="comments">
             <!-- item -->
             <div
-              v-for="comment in item.comment"
+              v-for="comment in item.comments"
               class="comment__item bg-baseBg/[.4] px-4 py-[18px] rounded-lg my-4"
               :key="comment._id"
             >

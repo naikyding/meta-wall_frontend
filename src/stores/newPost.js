@@ -1,4 +1,8 @@
 import { defineStore } from 'pinia'
+import { creatPostAPI } from '@/api'
+import { resStatus } from '../utils/responseHandle'
+import Swal from 'sweetalert2'
+import router from '../router/index'
 
 export const useNewPostStore = defineStore('New Post Store', {
   state: () => ({
@@ -6,27 +10,43 @@ export const useNewPostStore = defineStore('New Post Store', {
       url: '',
       name: '',
       size: 0,
+      buffer: null,
     },
 
     form: {
       content: '',
-      imgUrl: '',
     },
   }),
 
   getters: {
+    imageOverSize: (state) => {
+      return state.previewImg.size > 1048576
+    },
+
     submitBtnStatus: (state) => {
-      return state.form.content &&
-        state.form.imgUrl &&
-        state.previewImg.size < 1048576
+      if (state.previewImg.buffer && state.previewImg.size > 1048576)
+        return 'bg-[#A8B0B9] text-black cursor-not-allowed'
+
+      return state.form.content
         ? 'bg-primary text-white hover:bg-secondary hover:text-black active:bg-primary'
         : 'bg-[#A8B0B9] text-black cursor-not-allowed'
     },
   },
 
   actions: {
+    resetForm() {
+      this.previewImg = {
+        url: '',
+        name: '',
+        size: 0,
+        buffer: null,
+      }
+      this.form.content = ''
+    },
+
     imgPreview(e) {
       const uploadFile = e.target.files[0]
+      this.previewImg.buffer = uploadFile
       if (!uploadFile) return false
 
       const imgUrl = URL.createObjectURL(uploadFile)
@@ -39,6 +59,38 @@ export const useNewPostStore = defineStore('New Post Store', {
       this.previewImg.url = ''
       this.previewImg.name = ''
       this.previewImg.size = 0
+    },
+
+    submitPostSuccess(message) {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      this.resetForm()
+      router.push({ path: '/' })
+    },
+
+    submitPostError(message) {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    },
+
+    async submitPost() {
+      const form = new FormData()
+      form.append('content', this.form.content)
+
+      if (this.previewImg.buffer) form.append('image', this.previewImg.buffer)
+
+      const { data } = await creatPostAPI(form)
+      resStatus(data, this.submitPostSuccess, this.submitPostError)
     },
   },
 })
