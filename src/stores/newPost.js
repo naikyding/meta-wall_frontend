@@ -35,12 +35,7 @@ export const useNewPostStore = defineStore('New Post Store', {
 
   actions: {
     resetForm() {
-      this.previewImg = {
-        url: '',
-        name: '',
-        size: 0,
-        buffer: null,
-      }
+      this.removePreview()
       this.form.content = ''
     },
 
@@ -59,6 +54,7 @@ export const useNewPostStore = defineStore('New Post Store', {
       this.previewImg.url = ''
       this.previewImg.name = ''
       this.previewImg.size = 0
+      this.previewImg.buffer = null
     },
 
     submitPostSuccess(message) {
