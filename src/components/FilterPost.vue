@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+import { usePostStore } from '@/stores/posts'
+const postStore = usePostStore()
+</script>
 
 <template>
   <div class="grid grid-cols-3 gap-3">
@@ -6,9 +9,13 @@
     <div
       class="border-2 border-black bg-white col-span-3 sm:col-span-1 flex-all-center relative"
     >
-      <select class="w-full h-[46px] px-4 appearance-none focus:outline-none">
-        <option value="-1">最新貼文</option>
-        <option value="1">最舊貼文</option>
+      <select
+        v-model="postStore.filter.s"
+        class="w-full h-[46px] px-4 appearance-none focus:outline-none"
+        @change="postStore.getPostsList(postStore.filter.q, postStore.filter.s)"
+      >
+        <option value="n">最新貼文</option>
+        <option value="o">最舊貼文</option>
       </select>
       <svg
         class="fill-current h-4 w-4 pointer-events-none absolute right-4"
@@ -25,11 +32,16 @@
       class="border-2 border-black col-span-3 sm:col-span-2 bg-white flex relative"
     >
       <input
+        v-model="postStore.filter.q"
         type="text"
         class="focus:outline-none w-full pl-4 h-[46px] pr-[64px]"
         placeholder="搜尋貼文"
+        @keydown.enter="
+          postStore.getPostsList(postStore.filter.q, postStore.filter.s)
+        "
       />
       <button
+        @click="postStore.getPostsList(postStore.filter.q, postStore.filter.s)"
         class="bg-primary hover:bg-secondary hover:text-black w-[46px] h-[46px] text-white grow-0 flex-all-center absolute right-0 border-l-2 border-black active:bg-primary"
       >
         <svg
