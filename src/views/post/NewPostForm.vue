@@ -39,7 +39,7 @@
       <div
         v-show="newPost.previewImg.url"
         @click="newPost.removePreview"
-        class="text-center text-primary hover:text-secondary remove-img absolute top-4 right-4"
+        class="text-center text-white hover:text-secondary remove-img absolute top-4 left-4"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -59,10 +59,7 @@
     <!-- 送出貼文 -->
     <div class="submit-area text-center mt-8">
       <!-- 圖檔超過大小 -->
-      <div
-        v-show="newPost.previewImg.size > 1048576"
-        class="error-area text-error"
-      >
+      <div v-show="newPost.imageOverSize" class="error-area text-error">
         圖片檔案過大，僅限 1mb 以下檔案
       </div>
 
@@ -70,6 +67,7 @@
       <button
         class="rounded-lg h-[54px] w-[323px] px-8 py-1 mt-4 border-2 border-black shadow-base"
         :class="[newPost.submitBtnStatus]"
+        @click="newPost.submitPost"
       >
         送出貼文
       </button>
