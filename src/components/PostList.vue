@@ -51,15 +51,15 @@ onMounted(() => {
         </div>
       </div>
 
-      <!-- 內容 -->
-      <div class="content mt-4">
-        {{ item.content }}
-      </div>
-
       <details>
         <summary class="list-none focus:outline-none cursor-pointer">
+          <!-- 內容 -->
+          <div class="content mt-4">
+            {{ item.content }}
+          </div>
+
           <!-- 圖片 -->
-          <div class="image my-4">
+          <div v-show="item.image" class="image my-4">
             <img
               class="border-2 border-black rounded-lg w-full"
               :src="item.image"
