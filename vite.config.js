@@ -18,7 +18,17 @@ export default defineConfig({
     },
   },
   server: {
+    https: true,
     // 開發端口
     port: 8080,
+
+    // 代理服務
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
   },
 })
