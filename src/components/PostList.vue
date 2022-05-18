@@ -1,14 +1,12 @@
 <script setup>
 import { useUserStore } from '@/stores/user'
 import { usePostStore } from '@/stores/posts'
-import { onMounted } from 'vue'
+import { day } from '../utils/day'
 
 const userStore = useUserStore()
 const postStore = usePostStore()
 
-onMounted(() => {
-  postStore.getPostsList()
-})
+postStore.getPostsList()
 </script>
 
 <template>
@@ -47,7 +45,7 @@ onMounted(() => {
         </div>
         <div class="user-dec">
           <p class="font-bold">{{ item.user?.nickname }}</p>
-          <p class="text-xs text-[#9B9893]">{{ item.createdAt }}</p>
+          <p class="text-xs text-[#9B9893]">{{ day(item.createdAt) }}</p>
         </div>
       </div>
 
