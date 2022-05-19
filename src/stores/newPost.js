@@ -87,8 +87,8 @@ export const useNewPostStore = defineStore('New Post Store', {
 
       if (this.previewImg.buffer) form.append('image', this.previewImg.buffer)
 
-      const { data } = await creatPostAPI(form)
-      resStatus(data, this.submitPostSuccess, this.submitPostError)
+      const res = await creatPostAPI(form)
+      resStatus(res, this.submitPostSuccess, this.submitPostError)
     },
   },
 })

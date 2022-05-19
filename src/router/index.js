@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import MetaHome from '../views/MetaHome.vue'
 import { useAppStore } from '../stores/app'
+import { useUserStore } from '../stores/user'
 
 import FilterPost from '@/components/FilterPost.vue'
 import PostList from '@/components/PostList.vue'
@@ -27,6 +28,7 @@ const router = createRouter({
             'content-top': FilterPost,
             'content-bottom': PostList,
           },
+          meta: { auth: true },
         },
         // 張貼
         {
@@ -36,6 +38,7 @@ const router = createRouter({
             'content-top': TitleArea,
             'content-bottom': NewPostForm,
           },
+          meta: { auth: true },
         },
         // 跟隨
         {
@@ -45,6 +48,7 @@ const router = createRouter({
             'content-top': TitleArea,
             'content-bottom': Follows,
           },
+          meta: { auth: true },
         },
         // 按讚
         {
@@ -54,6 +58,7 @@ const router = createRouter({
             'content-top': TitleArea,
             'content-bottom': Likes,
           },
+          meta: { auth: true },
         },
         // 個人資料
         {
@@ -63,6 +68,7 @@ const router = createRouter({
             'content-top': TitleArea,
             'content-bottom': Profile,
           },
+          meta: { auth: true },
         },
         // 個人頁
         {
@@ -72,6 +78,7 @@ const router = createRouter({
             'content-top': userMain,
             'content-bottom': PostList,
           },
+          meta: { auth: true },
         },
       ],
     },
@@ -100,7 +107,16 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const appStore = useAppStore()
+  const userStore = useUserStore()
   appStore.routerName = to.name
+
+  const localUserData = JSON.parse(localStorage.getItem('user'))
+  if (!userStore.data.id && localUserData) userStore.saveUserData(localUserData)
+
+  // 路由驗証
+  if (to.meta.auth && !localStorage.getItem('token'))
+    return next({ path: '/login' })
+
   next()
 })
 

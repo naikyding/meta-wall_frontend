@@ -27,7 +27,9 @@ const user = useUserStore()
             alt=""
           />
         </div>
-        <div class="user-name group-hover:text-primary">邊緣小杰</div>
+        <div class="user-name group-hover:text-primary">
+          {{ user.data.nickname }}
+        </div>
       </RouterLink>
     </li>
 
