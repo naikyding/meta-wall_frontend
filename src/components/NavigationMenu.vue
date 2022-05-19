@@ -43,13 +43,15 @@ const dropdownToggle = () => {
           v-click-away="dropdownToggle"
         >
           <li class="py-2 hover:bg-baseBg">
-            <RouterLink :to="{ path: `/user/${123}` }" class="block"
+            <RouterLink
+              :to="{ path: `/user/${userStore.data.id}` }"
+              class="block"
               >我的貼文牆</RouterLink
             >
           </li>
           <li class="py-2 hover:bg-baseBg border-y-2">
             <RouterLink
-              :to="{ path: `/profile/${userStore.userId}` }"
+              :to="{ path: `/profile/${userStore.data.id}` }"
               class="block"
               >修改個人資料</RouterLink
             >

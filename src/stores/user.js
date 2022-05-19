@@ -13,7 +13,6 @@ export const useUserStore = defineStore('user', {
       id: '',
       avatar: '',
     },
-    userId: '123123',
   }),
   getters: {},
   actions: {
