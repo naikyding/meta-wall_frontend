@@ -1,4 +1,9 @@
 import { defineStore } from 'pinia'
+import { userRegisterAPI } from '@/api'
+import validator from 'validator'
+import Swal from 'sweetalert2'
+import { resStatus } from '../utils/responseHandle'
+import router from '../router'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
@@ -10,4 +15,117 @@ export const useUserStore = defineStore('user', {
   }),
   getters: {},
   actions: {},
+})
+
+export const userUserRegister = defineStore('User Register', {
+  state: () => ({
+    form: {
+      nickname: '',
+      email: '',
+      password: '',
+      passwordConfirm: '',
+    },
+    formStatus: {
+      nickname: false,
+      email: false,
+      password: false,
+      passwordConfirm: false,
+    },
+  }),
+  getters: {
+    validateStatus: (state) => ({
+      nickname:
+        state.formStatus.nickname &&
+        state.form.nickname &&
+        state.rules.nickname.length &&
+        !state.rules.nickname.required,
+      email:
+        state.formStatus.email &&
+        !state.rules.email.required &&
+        !state.rules.email.validate,
+      password:
+        state.formStatus.password &&
+        !state.rules.password.required &&
+        !state.rules.password.length,
+      passwordConfirm:
+        state.formStatus.passwordConfirm &&
+        state.rules.passwordConfirm.same &&
+        !state.rules.passwordConfirm.register,
+    }),
+    rules: (state) => ({
+      nickname: {
+        required: state.form.nickname === '' && state.formStatus.nickname,
+        length: !state.form.nickname || state.form.nickname.length > 1,
+      },
+
+      email: {
+        required: state.form.email === '' && state.formStatus.email,
+        validate:
+          state.form.email.length > 0 && !validator.isEmail(state.form.email),
+      },
+      password: {
+        required: state.form.password === '' && state.formStatus.password,
+        length:
+          state.formStatus.password &&
+          state.form.password.length > 0 &&
+          state.form.password.length < 8,
+      },
+      passwordConfirm: {
+        required:
+          state.form.passwordConfirm === '' && state.formStatus.passwordConfirm,
+        same:
+          state.form.passwordConfirm.length > 0 &&
+          state.form.password === state.form.passwordConfirm,
+      },
+    }),
+  },
+
+  actions: {
+    resetForm() {
+      this.form = {
+        nickname: '',
+        email: '',
+        password: '',
+        passwordConfirm: '',
+      }
+      this.formStatus = {
+        nickname: false,
+        email: false,
+        password: false,
+        passwordConfirm: false,
+      }
+    },
+
+    registerSuccess(message) {
+      this.resetForm()
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      router.push({ path: '/login' })
+    },
+    async register(userData) {
+      // validate
+      if (Object.values(this.validateStatus).includes(false)) return
+      try {
+        const { data } = await userRegisterAPI(userData)
+        resStatus(data, this.registerSuccess)
+      } catch ({
+        response: {
+          data: { message },
+        },
+      }) {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: message,
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      }
+    },
+  },
 })
