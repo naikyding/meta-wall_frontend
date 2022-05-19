@@ -28,12 +28,14 @@ onUpdated(() => {
     >
       <!-- img -->
       <div
-        class="w-[300px] lg:w-[350px] h-[200px] md:h-[341px] img mr-0 lg:mr-12 bg-[url('/images/main.png')] bg-contain bg-no-repeat bg-center"
+        class="hidden md:block w-[300px] lg:w-[350px] h-[200px] md:h-[341px] img mr-0 lg:mr-12 bg-[url('/images/main.png')] bg-contain bg-no-repeat bg-center"
       ></div>
       <!-- 表單 -->
       <div class="input-area text-center">
         <div class="title">
-          <a class="logo text-primary text-6xl font-logo" href="/">MetaWall</a>
+          <a class="logo text-primary text-3xl md:text-6xl font-logo" href="/"
+            >MetaWall</a
+          >
         </div>
         <component :is="formComponents[loginStore.activeComponentIndex]">
         </component>
