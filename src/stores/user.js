@@ -59,6 +59,7 @@ export const userUserRegister = defineStore('User Register', {
       password: false,
       passwordConfirm: false,
     },
+    errorMessageStatus: false,
   }),
   getters: {
     validateStatus: (state) => ({
@@ -106,6 +107,8 @@ export const userUserRegister = defineStore('User Register', {
           state.form.password === state.form.passwordConfirm,
       },
     }),
+    formValidate: (state) =>
+      !Object.values(state.validateStatus).includes(false),
   },
 
   actions: {
@@ -126,6 +129,7 @@ export const userUserRegister = defineStore('User Register', {
 
     registerSuccess(message) {
       this.resetForm()
+      this.errorMessageStatus = false
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -135,9 +139,14 @@ export const userUserRegister = defineStore('User Register', {
       })
       router.push({ path: '/login' })
     },
+
     async register(userData) {
       // validate
-      if (Object.values(this.validateStatus).includes(false)) return
+      if (!this.formValidate) {
+        this.errorMessageStatus = true
+        return false
+      }
+
       try {
         const res = await userRegisterAPI(userData)
         resStatus(res, this.registerSuccess)
