@@ -79,8 +79,19 @@
       </span>
     </p>
 
+    <p class="text-error text-center text-sm mt-2">
+      <span
+        v-show="
+          userRegisterStore.errorMessageStatus &&
+          !userRegisterStore.formValidate
+        "
+      >
+        請完善資料
+      </span>
+    </p>
+
     <button
-      type="submit"
+      type="button"
       @click="userRegisterStore.register(userRegisterStore.form)"
       class="base-button"
     >
