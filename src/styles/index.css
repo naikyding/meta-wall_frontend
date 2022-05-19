@@ -13,6 +13,10 @@
     @apply w-full bg-primary hover:bg-secondary py-1 border-2 border-black rounded-lg h-12 focus:outline-none focus:ring text-white hover:text-black shadow-base mb-4 mt-6;
   }
 
+  .base-button-disabled {
+    @apply w-full bg-[#A8B0B9]  py-1 border-2 border-black rounded-lg h-12 focus:outline-none text-black cursor-not-allowed shadow-base mb-4 mt-6;
+  }
+
   .flex-all-center {
     @apply flex justify-center items-center;
   }
