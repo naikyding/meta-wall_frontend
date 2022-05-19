@@ -55,7 +55,9 @@ const dropdownToggle = () => {
             >
           </li>
           <li class="py-2 hover:bg-baseBg">
-            <a href="" class="block">登出</a>
+            <a @click="userStore.logout" href="javascript:;" class="block"
+              >登出</a
+            >
           </li>
           <!-- dropdown shadow -->
           <div
