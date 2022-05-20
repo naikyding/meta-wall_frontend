@@ -44,15 +44,15 @@ const dropdownToggle = () => {
         >
           <li class="py-2 hover:bg-baseBg">
             <RouterLink
-              :to="{ path: `/user/${userStore.data.id}` }"
+              :to="{
+                path: `/user/${userStore.data.id ? userStore.data.id : ' '}`,
+              }"
               class="block"
               >我的貼文牆</RouterLink
             >
           </li>
           <li class="py-2 hover:bg-baseBg border-y-2">
-            <RouterLink
-              :to="{ path: `/profile/${userStore.data.id}` }"
-              class="block"
+            <RouterLink :to="{ path: '/profile' }" class="block"
               >修改個人資料</RouterLink
             >
           </li>
