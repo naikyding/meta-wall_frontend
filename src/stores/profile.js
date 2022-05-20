@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const useProfileStore = defineStore('Profile Store', {
+export const useProfileMainStore = defineStore('Profile Store', {
   state: () => ({
     activeIndex: 0,
   }),

@@ -1,11 +1,15 @@
-<script setup></script>
+<script setup>
+import { useUserPassword } from '../../stores/user'
+const userPassword = useUserPassword()
+</script>
 
 <template>
   <div>
     <label>
       <span>請輸入新密碼</span>
       <input
-        type="text"
+        v-model.trim="userPassword.form.password"
+        type="password"
         class="base-input mt-1 mb-4"
         placeholder="請輸入新密碼"
       />
@@ -13,13 +17,25 @@
 
     <label>
       <span class="">再次請輸入</span>
-      <input type="text" class="base-input mt-1" placeholder="再次輸入新密碼" />
+      <input
+        v-model.trim="userPassword.form.passwordConfirm"
+        type="password"
+        class="base-input mt-1"
+        placeholder="再次輸入新密碼"
+      />
     </label>
 
-    <div class="error-area text-error my-4 text-center">輸入錯誤 @!#$@#!</div>
+    <div class="error-area text-error my-4 text-center h-5">
+      <span v-show="userPassword.error.status">
+        {{ userPassword.error.message }}
+      </span>
+    </div>
 
     <button
-      class="block w-full bg-[#A8B0B9] rounded-lg py-4 text-white border-2 border-[#808080] mt-8 font-bold"
+      @click="userPassword.updatePassword(userPassword.form)"
+      :class="
+        userPassword.formValidateStatus ? 'base-button' : 'base-button-disabled'
+      "
     >
       重設密碼
     </button>

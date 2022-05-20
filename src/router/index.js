@@ -62,7 +62,7 @@ const router = createRouter({
         },
         // 個人資料
         {
-          path: 'profile/:id',
+          path: 'profile',
           name: 'profile',
           components: {
             'content-top': TitleArea,

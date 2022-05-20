@@ -1,9 +1,9 @@
 <script setup>
-import { useProfileStore } from '@/stores/profile'
+import { useProfileMainStore } from '@/stores/profile'
 import BaseInfo from './TabBaseInfo.vue'
 import Password from './TabPassword.vue'
 
-const profileStore = useProfileStore()
+const profileStore = useProfileMainStore()
 const components = [BaseInfo, Password]
 </script>
 
@@ -29,7 +29,7 @@ const components = [BaseInfo, Password]
 
     <!-- CONTENT -->
     <component
-      class="border-2 border-black bg-white rounded-lg py-8 px-6 xl:px-[105px] shadow-post"
+      class="border-2 border-black bg-white rounded-lg py-8 px-6 md:px-16 xl:px-[105px] shadow-post"
       :is="components[profileStore.activeIndex]"
     />
   </div>
