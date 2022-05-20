@@ -77,7 +77,11 @@ userProfile.getUserProfile()
 
       <button
         @click="userProfile.updateUserProfile(userProfile.form)"
-        class="base-button font-bold h-[54px]"
+        :class="
+          userProfile.formValidateStatus
+            ? 'base-button'
+            : 'base-button-disabled'
+        "
       >
         送出更新
       </button>
