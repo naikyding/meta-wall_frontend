@@ -1,5 +1,11 @@
 import { getPostsList, creatPost } from './posts'
-import { userRegister, userLogin, userProfile, updateProfile } from './user'
+import {
+  userRegister,
+  userLogin,
+  userProfile,
+  updateProfile,
+  updatePassword,
+} from './user'
 
 export const getPostsListAPI = getPostsList
 export const creatPostAPI = creatPost
@@ -9,3 +15,4 @@ export const userLoginAPI = userLogin
 
 export const userProfileAPI = userProfile
 export const updateProfileAPI = updateProfile
+export const updatePasswordAPI = updatePassword
