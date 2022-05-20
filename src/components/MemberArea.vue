@@ -17,7 +17,7 @@ const user = useUserStore()
 
     <li>
       <RouterLink
-        :to="{ path: `/user/${123}` }"
+        :to="{ path: `/user/${user.data.id ? user.data.id : ' '}` }"
         class="flex items-center group"
       >
         <div class="avatar overflow-hidden item">
