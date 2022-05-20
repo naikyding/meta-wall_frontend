@@ -14,7 +14,7 @@
   }
 
   .base-button-disabled {
-    @apply w-full bg-[#A8B0B9]  py-1 border-2 border-black rounded-lg h-12 focus:outline-none text-black cursor-not-allowed shadow-base mb-4 mt-6;
+    @apply block w-full bg-[#A8B0B9] rounded-lg py-1 text-white border-2 border-[#808080]  font-bold cursor-not-allowed mb-4 mt-10 h-12;
   }
 
   .flex-all-center {
