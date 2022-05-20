@@ -4,12 +4,14 @@ import Swal from 'sweetalert2'
 import { resStatus } from '../utils/responseHandle'
 import router from '../router'
 import { authLogin, authLogout } from '../utils/auth'
+import { useProfileMainStore } from './profile'
 
 import {
   userRegisterAPI,
   userLoginAPI,
   userProfileAPI,
   updateProfileAPI,
+  updatePasswordAPI,
 } from '@/api'
 
 export const useUserStore = defineStore('user', {
@@ -309,6 +311,74 @@ export const useProfileStore = defineStore('User Profile', {
 
       const res = await updateProfileAPI(form)
       resStatus(res, this.updateUserProfileSuccess)
+    },
+  },
+})
+
+export const useUserPassword = defineStore('User Password', {
+  state: () => ({
+    form: {
+      password: '',
+      passwordConfirm: '',
+    },
+
+    error: {
+      status: false,
+      message: '請填寫完整!',
+    },
+  }),
+
+  getters: {
+    formValidateStatus: (state) => {
+      const passwordStatus = state.form.password ? true : false
+      const passwordConfirmStatus = state.form.passwordConfirm ? true : false
+      const validateSataus = passwordStatus && passwordConfirmStatus
+
+      return validateSataus
+    },
+  },
+
+  actions: {
+    resetForm() {
+      this.form = {
+        password: '',
+        passwordConfirm: '',
+      }
+    },
+
+    updatePasswordSuccess(message, data) {
+      const profileMainStore = useProfileMainStore()
+
+      this.resetForm()
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+
+      profileMainStore.activeIndex = 0
+    },
+
+    updatePasswordError({ message }) {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    },
+
+    async updatePassword(newPassword) {
+      try {
+        if (!this.form.password || !this.form.passwordConfirm) return false
+        const res = await updatePasswordAPI(newPassword)
+        resStatus(res, this.updatePasswordSuccess)
+      } catch ({ data }) {
+        this.updatePasswordError(data)
+      }
     },
   },
 })
