@@ -1,9 +1,9 @@
 <script setup>
-import { useProfileStore } from '@/stores/profile'
+import { useProfileMainStore } from '@/stores/profile'
 import BaseInfo from './TabBaseInfo.vue'
 import Password from './TabPassword.vue'
 
-const profileStore = useProfileStore()
+const profileStore = useProfileMainStore()
 const components = [BaseInfo, Password]
 </script>
 
