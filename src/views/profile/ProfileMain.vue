@@ -29,7 +29,7 @@ const components = [BaseInfo, Password]
 
     <!-- CONTENT -->
     <component
-      class="border-2 border-black bg-white rounded-lg py-8 px-6 xl:px-[105px] shadow-post"
+      class="border-2 border-black bg-white rounded-lg py-8 px-6 md:px-16 xl:px-[105px] shadow-post"
       :is="components[profileStore.activeIndex]"
     />
   </div>

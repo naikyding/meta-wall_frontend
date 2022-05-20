@@ -1,10 +1,16 @@
 import { defineStore } from 'pinia'
-import { userRegisterAPI, userLoginAPI } from '@/api'
 import validator from 'validator'
 import Swal from 'sweetalert2'
 import { resStatus } from '../utils/responseHandle'
 import router from '../router'
 import { authLogin, authLogout } from '../utils/auth'
+
+import {
+  userRegisterAPI,
+  userLoginAPI,
+  userProfileAPI,
+  updateProfileAPI,
+} from '@/api'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
@@ -12,11 +18,14 @@ export const useUserStore = defineStore('user', {
       nickname: '',
       id: '',
       avatar: '',
+      gender: '',
     },
   }),
   getters: {},
   actions: {
     logout() {
+      router.replace({ path: '/login' })
+
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -24,8 +33,6 @@ export const useUserStore = defineStore('user', {
         showConfirmButton: false,
         timer: 1500,
       })
-
-      router.replace({ path: '/login' })
 
       authLogout()
       this.removeUserData()
@@ -37,10 +44,11 @@ export const useUserStore = defineStore('user', {
         avatar: '',
       }
     },
-    saveUserData({ nickname, avatar, id }) {
+    saveUserData({ nickname, avatar, id, gender }) {
       this.data.nickname = nickname
       this.data.avatar = avatar
       this.data.id = id
+      this.data.gender = gender
     },
   },
 })
@@ -213,6 +221,94 @@ export const useLoginStore = defineStore('User Login', {
       } catch ({ data }) {
         this.loginError = data.message
       }
+    },
+  },
+})
+
+export const useProfileStore = defineStore('User Profile', {
+  state: () => ({
+    form: {
+      nickname: '',
+      avatar: '',
+      gender: '',
+    },
+
+    file: {
+      buffer: null,
+    },
+    error: {
+      required: false,
+    },
+  }),
+  getters: {
+    formValidateStatus: (state) => {
+      const nicknameStatus =
+        state.form.nickname && state.form.nickname.length > 1
+      const genderStatus = state.form.gender ? true : false
+
+      const validateStatus = nicknameStatus && genderStatus
+      if (validateStatus) state.error.required = false
+
+      return validateStatus
+    },
+  },
+  actions: {
+    avatarImagePreview(e) {
+      const uploadFile = e.target.files[0]
+      this.file.buffer = uploadFile
+      if (!uploadFile) return false
+
+      const imgUrl = URL.createObjectURL(uploadFile)
+      this.form.avatar = imgUrl
+    },
+
+    saveProfileForm(defaultData = { nickname: '', avatar: '', gender: '' }) {
+      this.form = defaultData
+    },
+
+    getUserProfileSuccess(message, { user }) {
+      const userStore = useUserStore()
+      userStore.saveUserData(user)
+      localStorage.setItem('user', JSON.stringify(user))
+
+      const { nickname, avatar, gender } = user
+      this.saveProfileForm({ nickname, avatar, gender })
+    },
+
+    async getUserProfile() {
+      const res = await userProfileAPI()
+      resStatus(res, this.getUserProfileSuccess)
+    },
+
+    updateUserProfileSuccess(message) {
+      this.getUserProfile()
+
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    },
+
+    async updateUserProfile(formData) {
+      if (!this.formValidateStatus) {
+        this.error.required = true
+        return false
+      }
+
+      const { nickname, gender } = formData
+      const form = new FormData()
+      form.append('nickname', nickname)
+      form.append('gender', gender)
+
+      if (this.file.buffer) {
+        form.append('avatar', this.file.buffer)
+      }
+
+      const res = await updateProfileAPI(form)
+      resStatus(res, this.updateUserProfileSuccess)
     },
   },
 })
