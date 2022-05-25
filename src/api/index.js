@@ -1,4 +1,5 @@
 import { getPostsList, creatPost } from './posts'
+import { getUserFollows } from './follows'
 import {
   userRegister,
   userLogin,
@@ -16,3 +17,5 @@ export const userLoginAPI = userLogin
 export const userProfileAPI = userProfile
 export const updateProfileAPI = updateProfile
 export const updatePasswordAPI = updatePassword
+
+export const getUserFollowsAPI = getUserFollows
