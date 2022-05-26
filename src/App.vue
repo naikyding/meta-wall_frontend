@@ -13,6 +13,7 @@ const appStore = useAppStore()
     :class="{ 'pb-[100px] md:pb-16': !appStore.navStatus }"
   >
     <NavigationMenu :class="{ hidden: appStore.navStatus }" />
+
     <RouterView
       class="font-dec text-black"
       :class="{ 'pt-[60px]': !appStore.navStatus }"
@@ -23,7 +24,8 @@ const appStore = useAppStore()
 
 <style>
 .bg-grid {
-  background-image: linear-gradient(#70707023 1px, transparent 0),
+  background-image:
+    linear-gradient(#70707023 1px, transparent 0),
     linear-gradient(90deg, #70707023 1px, transparent 0);
 }
 </style>

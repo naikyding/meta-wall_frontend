@@ -18,6 +18,7 @@ export default defineConfig({
     },
   },
   server: {
+    https: true,
     // 開發端口
     port: 8080,
 
