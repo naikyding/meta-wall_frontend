@@ -3,6 +3,7 @@ import { commentPostAPI } from '@/api'
 import { resStatus } from '../utils/responseHandle'
 import Swal from 'sweetalert2'
 import { useLikesStore } from '@/stores/likes.js'
+import { usePostStore } from './posts'
 
 export const useCommentStore = defineStore('Comment Store', {
   state: () => ({
@@ -16,8 +17,9 @@ export const useCommentStore = defineStore('Comment Store', {
       this.form.content = null
     },
 
-    commentSuccess(message) {
+    commentSuccess(message, data) {
       const likeStore = useLikesStore()
+      const postStore = usePostStore()
       this.resetForm()
       Swal.fire({
         position: 'center',
@@ -27,6 +29,7 @@ export const useCommentStore = defineStore('Comment Store', {
         timer: 1500,
       })
       likeStore.getUserLikes()
+      postStore.getPostComments(undefined, data.comment.postId)
     },
 
     async comment(form) {
