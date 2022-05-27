@@ -6,3 +6,5 @@ export const getPostsList = (q = '', s = 'n') =>
   })
 
 export const creatPost = (data) => request.post('/post', data)
+
+export const commentPost = (data) => request.post('/comments', data)

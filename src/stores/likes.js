@@ -6,8 +6,16 @@ import Swal from 'sweetalert2'
 export const useLikesStore = defineStore('Likes', {
   state: () => ({
     list: [], // 跟隨名單
+    activePostId: null,
+    postModel: {
+      status: false,
+    },
   }),
-  getters: {},
+  getters: {
+    activePostContent: (state) => {
+      return state.list.find((post) => post._id === state.activePostId) || {}
+    },
+  },
   actions: {
     getUserLikesSuccess(message, data) {
       this.list = data
@@ -22,7 +30,7 @@ export const useLikesStore = defineStore('Likes', {
       }
     },
 
-    toggleLikeSuccess(message, data) {
+    toggleLikeSuccess(message) {
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -46,6 +54,16 @@ export const useLikesStore = defineStore('Likes', {
           timer: 1500,
         })
       }
+    },
+
+    showPost(postId) {
+      this.activePostId = postId
+      this.postModel.status = true
+    },
+
+    closePostModel() {
+      this.postModel.status = false
+      this.activePostId = null
     },
   },
 })
