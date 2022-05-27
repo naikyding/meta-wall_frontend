@@ -3,8 +3,9 @@ import { useUserStore } from '../stores/user'
 import { day, dayToNow } from '../utils/day'
 import { useLikesStore } from '@/stores/likes'
 import { useCommentStore } from '@/stores/comments'
+import { RouterLink } from 'vue-router'
 const userStore = useUserStore()
-const likesSotre = useLikesStore()
+const likesStore = useLikesStore()
 const commentStore = useCommentStore()
 
 const props = defineProps({
@@ -26,8 +27,8 @@ const props = defineProps({
     class="absolute bg-black inset-0 z-50 bg-opacity-70 flex justify-center items-center"
   >
     <div
-      class="bg-white rounded-lg max-h-[650px] w-[600px] overflow-y-scroll border-2 border-black shadow-post"
-      v-click-away="likesSotre.closePostModel"
+      class="bg-white rounded-lg max-h-[800px] w-[600px] overflow-y-scroll border-2 border-black shadow-post"
+      v-click-away="likesStore.closePostModel"
     >
       <!-- 文章內容 -->
       <div class="w-full bg-white rounded-lg p-6">
@@ -35,21 +36,30 @@ const props = defineProps({
         <div class="post-user flex items-center">
           <!-- 頭像 -->
           <div class="avatar overflow-hidden item">
-            <img
-              class="object-cover h-full w-full"
-              :src="props.data.user?.avatar"
-              :alt="props.data.user.nickname"
-            />
+            <RouterLink :to="{ path: `/user/${props.data.user._id}` }">
+              <img
+                class="object-cover h-full w-full"
+                :src="props.data.user?.avatar"
+                :alt="props.data.user.nickname"
+              />
+            </RouterLink>
           </div>
           <div class="user-dec">
-            <p class="font-bold">{{ props.data.user?.nickname }}</p>
+            <p class="font-bold">
+              <RouterLink
+                :to="{ path: `/user/${props.data.user._id}` }"
+                class="hover:underline"
+              >
+                {{ props.data.user?.nickname }}
+              </RouterLink>
+            </p>
             <p class="text-xs text-[#9B9893]">
               {{ day(props.data.createdAt) }}
             </p>
           </div>
         </div>
 
-        <details>
+        <details :class="`details_${props.data._id}`">
           <summary class="list-none focus:outline-none cursor-pointer">
             <!-- 內容 -->
             <div class="content mt-4">
@@ -68,12 +78,15 @@ const props = defineProps({
             <!-- 操作 -->
             <div class="operate flex">
               <!-- likes -->
-              <button class="flex items-center">
+              <button
+                @click="likesStore.toggleLike({ postId: props.data._id })"
+                class="flex items-center"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-6 w-6 mr-1"
                   :class="[
-                    props.data.likes.length > 0
+                    props.data.likes == userStore.data.id
                       ? 'text-primary'
                       : 'text-[#9B9893]',
                   ]"
@@ -154,7 +167,7 @@ const props = defineProps({
                 <button
                   @click="
                     commentStore.comment({
-                      postId: likesSotre.activePostId,
+                      postId: likesStore.activePostId,
                       content: commentStore.form.content,
                     })
                   "
@@ -177,14 +190,23 @@ const props = defineProps({
                 <div class="post-user flex">
                   <!-- 頭像 -->
                   <div class="avatar overflow-hidden item mr-4">
-                    <img
-                      :src="comment.user.avatar"
-                      class="object-cover h-full w-full"
-                      alt=""
-                    />
+                    <RouterLink :to="{ path: `/user/${comment.user._id}` }">
+                      <img
+                        :src="comment.user.avatar"
+                        class="object-cover h-full w-full"
+                        alt=""
+                      />
+                    </RouterLink>
                   </div>
                   <div class="user-dec">
-                    <p class="font-bold">{{ comment.user.nickname }}</p>
+                    <p class="font-bold">
+                      <RouterLink
+                        :to="{ path: `/user/${comment.user._id}` }"
+                        class="hover:underline"
+                      >
+                        {{ comment.user.nickname }}
+                      </RouterLink>
+                    </p>
                     <p class="text-xs text-[#9B9893]">
                       {{ dayToNow(comment.createdAt) }}
                     </p>

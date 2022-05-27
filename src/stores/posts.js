@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { getPostsListAPI } from '@/api'
+import { getPostsListAPI, getPostCommentsAPI } from '@/api'
 import { resStatus } from '../utils/responseHandle'
 import Swal from 'sweetalert2'
 import router from '../router'
@@ -35,6 +35,25 @@ export const usePostStore = defineStore('Post', {
       } catch ({ data }) {
         this.getPostsListError(data)
       }
+    },
+
+    getPostCommentsSuccess(message, data) {
+      const activePost = this.list.find((item) => item._id === data._id)
+      activePost.comments = data.comments
+    },
+
+    async getPostComments(e, postId) {
+      if (e && !e.target.open) return false
+      try {
+        const res = await getPostCommentsAPI(postId)
+        resStatus(res, this.getPostCommentsSuccess)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+
+    getLikes() {
+      console.log('likes')
     },
   },
 })

@@ -1,10 +1,14 @@
 <script setup>
 import { useUserStore } from '@/stores/user'
 import { usePostStore } from '@/stores/posts'
-import { day } from '../utils/day'
-
+import { useLikesStore } from '../stores/likes'
+import { dayToNow, day } from '../utils/day'
+import { useCommentStore } from '../stores/comments'
+import { RouterLink } from 'vue-router'
 const userStore = useUserStore()
 const postStore = usePostStore()
+const likesStore = useLikesStore()
+const commentStore = useCommentStore()
 
 postStore.getPostsList()
 </script>
@@ -37,19 +41,31 @@ postStore.getPostsList()
       <div class="post-user flex items-center">
         <!-- 頭像 -->
         <div class="avatar overflow-hidden item mr-4">
-          <img
-            :src="item.user?.avatar"
-            class="object-cover h-full w-full"
-            alt=""
-          />
+          <RouterLink :to="{ path: `/user/${item.user._id}` }">
+            <img
+              :src="item.user?.avatar"
+              class="object-cover h-full w-full"
+              alt=""
+            />
+          </RouterLink>
         </div>
         <div class="user-dec">
-          <p class="font-bold">{{ item.user?.nickname }}</p>
+          <p class="font-bold">
+            <RouterLink
+              class="hover:underline"
+              :to="{ path: `/user/${item.user._id}` }"
+            >
+              {{ item.user?.nickname }}
+            </RouterLink>
+          </p>
           <p class="text-xs text-[#9B9893]">{{ day(item.createdAt) }}</p>
         </div>
       </div>
 
-      <details>
+      <details
+        :class="`details_${item._id}`"
+        @toggle="postStore.getPostComments($event, item._id)"
+      >
         <summary class="list-none focus:outline-none cursor-pointer">
           <!-- 內容 -->
           <div class="content mt-4">
@@ -68,12 +84,22 @@ postStore.getPostsList()
           <!-- 操作 -->
           <div class="operate flex">
             <!-- likes -->
-            <button class="flex items-center">
+            <button
+              @click="
+                likesStore.toggleLike(
+                  { postId: item._id },
+                  $refs[`details_${item._id}`]
+                )
+              "
+              class="flex items-center"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6 mr-1"
                 :class="[
-                  item.likes.length > 0 ? 'text-primary' : 'text-[#9B9893]',
+                  item.likes == userStore.data.id
+                    ? 'text-primary'
+                    : 'text-[#9B9893]',
                 ]"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -128,7 +154,7 @@ postStore.getPostsList()
           <!-- 留言 -->
           <div class="new-post my-[18px] flex items-center">
             <!-- 用戶頭像 -->
-            <div class="avatar overflow-hidden item mr-4">
+            <div class="avatar overflow-hidden item">
               <img
                 :src="userStore.data.avatar"
                 class="object-cover h-full w-full"
@@ -136,13 +162,20 @@ postStore.getPostsList()
               />
             </div>
             <!-- input -->
-            <div class="input-area flex border-2 border-black w-full h-[40px]">
+            <div class="input-area flex border-2 border-black h-[40px] flex-1">
               <input
                 type="text"
                 class="focus:outline-none w-full px-4"
                 placeholder="留言..."
+                v-model="commentStore.form.content"
               />
               <button
+                @click="
+                  commentStore.comment({
+                    postId: item._id,
+                    content: commentStore.form.content,
+                  })
+                "
                 class="w-[128px] bg-primary text-white border-l-2 border-black hover:bg-secondary focus:outline-none hover:text-black focus:ring active:bg-primary"
               >
                 留言
@@ -162,16 +195,27 @@ postStore.getPostsList()
               <div class="post-user flex">
                 <!-- 頭像 -->
                 <div class="avatar overflow-hidden item mr-4">
-                  <img
-                    :src="comment.avatar"
-                    class="object-cover h-full w-full"
-                    alt=""
-                  />
+                  <RouterLink :to="{ path: `/user/${comment.user?._id}` }">
+                    <img
+                      :src="comment.user?.avatar"
+                      class="object-cover h-full w-full"
+                      :alt="comment.user?.avatar"
+                    />
+                  </RouterLink>
                 </div>
                 <div class="user-dec">
-                  <p class="font-bold">{{ comment.name }}</p>
-                  <p class="text-xs text-[#9B9893]">{{ comment.createdAt }}</p>
-                  <p class="mt-3">{{ comment.message }}</p>
+                  <p class="font-bold">
+                    <RouterLink
+                      :to="{ path: `/user/${comment.user?._id}` }"
+                      class="hover:underline"
+                    >
+                      {{ comment.user?.nickname }}
+                    </RouterLink>
+                  </p>
+                  <p class="text-xs text-[#9B9893]">
+                    {{ dayToNow(comment.createdAt) }}
+                  </p>
+                  <p class="mt-3">{{ comment.content }}</p>
                 </div>
               </div>
             </div>

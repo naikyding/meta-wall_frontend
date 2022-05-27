@@ -29,18 +29,21 @@ likesStore.getUserLikes()
     <div
       class="user-avatar overflow-hidden rounded-full h-[40px] w-[40px] mr-4"
     >
-      <img
-        :src="item.user.avatar"
-        class="object-cover h-full w-full"
-        :alt="item.user.name"
-      />
+      <RouterLink :to="{ path: `/user/${item.user._id}` }">
+        <img
+          :src="item.user.avatar"
+          class="object-cover h-full w-full"
+          :alt="item.user.name"
+        />
+      </RouterLink>
     </div>
     <div class="user-data grow">
       <p class="font-bold">
         <RouterLink
-          :to="{ path: `/user/${123}` }"
-          class="underline hover:text-primary"
-          >{{ item.user.nickname }}</RouterLink
+          :to="{ path: `/user/${item.user._id}` }"
+          class="hover:underline"
+        >
+          {{ item.user.nickname }}</RouterLink
         >
       </p>
       <div

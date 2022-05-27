@@ -1,7 +1,9 @@
 import { defineStore } from 'pinia'
+import { usePostStore } from '@/stores/posts'
 import { getUserLikesAPI, toggleUserLikesAPI } from '@/api'
 import { resStatus } from '../utils/responseHandle'
 import Swal from 'sweetalert2'
+import Vue from '../App.vue'
 
 export const useLikesStore = defineStore('Likes', {
   state: () => ({
@@ -31,6 +33,7 @@ export const useLikesStore = defineStore('Likes', {
     },
 
     toggleLikeSuccess(message) {
+      const postStore = usePostStore()
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -38,10 +41,17 @@ export const useLikesStore = defineStore('Likes', {
         showConfirmButton: false,
         timer: 1500,
       })
+      if (message === '移除按讚') {
+        this.activePostId = null
+        this.postModel.status = false
+      }
       this.getUserLikes()
+      postStore.getPostsList()
     },
 
     async toggleLike(postId) {
+      const detailsEl = document.querySelector(`.details_${postId.postId}`)
+      detailsEl.open = false
       try {
         const res = await toggleUserLikesAPI(postId)
         resStatus(res, this.toggleLikeSuccess)
