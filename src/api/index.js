@@ -1,4 +1,4 @@
-import { getPostsList, creatPost, commentPost } from './posts'
+import { getPostsList, creatPost, commentPost, getPostComments } from './posts'
 import { getUserFollows } from './follows'
 import {
   userRegister,
@@ -13,6 +13,7 @@ import {
 export const getPostsListAPI = getPostsList
 export const creatPostAPI = creatPost
 export const commentPostAPI = commentPost
+export const getPostCommentsAPI = getPostComments
 
 export const userRegisterAPI = userRegister
 export const userLoginAPI = userLogin
