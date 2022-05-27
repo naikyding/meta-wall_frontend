@@ -1,8 +1,5 @@
 import axios from 'axios'
-
-const apiUrl = import.meta.env.VITE_API_URL
-const isDev = process.env.NODE_ENV === 'development'
-const baseURL = isDev ? '/api' : apiUrl
+const baseURL = import.meta.env.VITE_API_URL
 
 const request = axios.create({
   baseURL,

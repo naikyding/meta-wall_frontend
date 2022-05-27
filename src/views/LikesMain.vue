@@ -1,4 +1,5 @@
 <script setup>
+import PostModel from '../components/PostModel.vue'
 import { day } from '../utils/day'
 import { useLikesStore } from '@/stores/likes'
 const likesStore = useLikesStore()
@@ -71,7 +72,10 @@ likesStore.getUserLikes()
         取消
       </button>
 
-      <button class="hover:text-primary flex flex-col items-center">
+      <button
+        @click="likesStore.showPost(item._id)"
+        class="hover:text-primary flex flex-col items-center"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"
@@ -90,4 +94,10 @@ likesStore.getUserLikes()
       </button>
     </div>
   </div>
+
+  <!-- Model -->
+  <PostModel
+    :status="likesStore.postModel.status"
+    :data="likesStore.activePostContent"
+  />
 </template>
