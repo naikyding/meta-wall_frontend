@@ -28,18 +28,27 @@
 	},
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
+		// format
 		"dbaeumer.vscode-eslint",
 		"esbenp.prettier-vscode",
+		// vue tool
 		"vue.volar",
+		"sdras.vue-vscode-snippets",
+		// css
 		"bradlc.vscode-tailwindcss",
+		// 效率工具
 		"tabnine.tabnine-vscode",
+		"christian-kohler.path-intellisense",
+		// 樣式
 		"pkief.material-icon-theme",
-		"eamodio.gitlens",
 		"oderwat.indent-rainbow",
-		"lllllllqw.jsdoc",
 		"formulahendry.auto-rename-tag",
 		"formulahendry.auto-close-tag",
-		"naumovs.color-highlight"
+		"naumovs.color-highlight",
+		// git
+		"eamodio.gitlens",
+		// 註解函式
+		"lllllllqw.jsdoc"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
