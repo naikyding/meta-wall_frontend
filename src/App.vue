@@ -12,7 +12,7 @@ const appStore = useAppStore()
     class="bg-grid bg-[length:63px_63px] bg-baseBg bg-center h-screen relative overflow-y-auto"
     :class="{ 'pb-[100px] md:pb-16': !appStore.navStatus }"
   >
-    <NavigationMenu :class="{ hidden: appStore.navStatus }" />
+    <NavigationMenu class="z-50" :class="{ hidden: appStore.navStatus }" />
 
     <RouterView
       class="font-dec text-black"

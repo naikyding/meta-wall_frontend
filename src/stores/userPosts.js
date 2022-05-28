@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
-import { getPostsListAPI, getPostCommentsAPI } from '@/api'
+import { getUserPostListAPI } from '@/api'
 import { resStatus } from '../utils/responseHandle'
-import Swal from 'sweetalert2'
-import router from '../router'
+import { getPostCommentsAPI } from '@/api'
 
-export const usePostStore = defineStore('Post', {
+export const useUserPostsStore = defineStore('User Posts List', {
   state: () => ({
+    user: {},
     list: [],
     filter: {
       q: '',
@@ -14,26 +14,20 @@ export const usePostStore = defineStore('Post', {
   }),
   getters: {},
   actions: {
-    getPostsListSuccess(message, data) {
-      this.list = data
-    },
-    getPostsListError({ message }) {
-      Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: message,
-        showConfirmButton: false,
-        timer: 1500,
-      })
-      router.replace({ path: '/login' })
+    getUserPostsSuccess(message, data) {
+      this.list = data.posts
+      this.user.avatar = data.avatar
+      this.user.nickname = data.nickname
+      this.user.id = data._id
+      this.user.follower = data.follower
     },
 
-    async getPostsList(q, s) {
+    async getUserPosts(userId, q = '', s = 'n') {
       try {
-        const res = await getPostsListAPI(q, s)
-        resStatus(res, this.getPostsListSuccess)
-      } catch ({ data }) {
-        this.getPostsListError(data)
+        const res = await getUserPostListAPI(userId, q, s)
+        resStatus(res, this.getUserPostsSuccess)
+      } catch (error) {
+        console.log(error)
       }
     },
 

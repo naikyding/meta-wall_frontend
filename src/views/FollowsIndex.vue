@@ -31,17 +31,19 @@ followStore.getUserFollowList()
     <div
       class="user-avatar overflow-hidden rounded-full h-[40px] w-[40px] mr-4"
     >
-      <img
-        :src="item.userId.avatar"
-        class="object-cover h-full w-full"
-        :alt="item.userId.nickname"
-      />
+      <RouterLink :to="{ path: `/user/${item.userId._id}` }">
+        <img
+          :src="item.userId.avatar"
+          class="object-cover h-full w-full"
+          :alt="item.userId.nickname"
+        />
+      </RouterLink>
     </div>
     <div class="user-data grow">
       <p class="font-bold">
         <RouterLink
           :to="{ path: `/user/${item.userId._id}` }"
-          class="underline hover:text-primary"
+          class="hover:underline"
           >{{ item.userId.nickname }}</RouterLink
         >
       </p>

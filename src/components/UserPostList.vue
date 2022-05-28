@@ -1,22 +1,21 @@
 <script setup>
 import { useUserStore } from '@/stores/user'
-import { usePostStore } from '@/stores/posts'
+import { useUserPostsStore } from '../stores/userPosts'
 import { useLikesStore } from '../stores/likes'
 import { dayToNow, day } from '../utils/day'
 import { useCommentStore } from '../stores/comments'
 import { RouterLink } from 'vue-router'
 const userStore = useUserStore()
-const postStore = usePostStore()
+
 const likesStore = useLikesStore()
 const commentStore = useCommentStore()
-
-postStore.getPostsList()
+const userPostStore = useUserPostsStore()
 </script>
 
 <template>
   <!-- 沒有貼文 -->
   <div
-    v-if="postStore.list?.length < 1"
+    v-if="userPostStore.list?.length < 1"
     class="no-data w-full bg-white border-2 border-black rounded-lg mt-4 shadow-post"
   >
     <div class="bar flex py-5 border-b-2 px-4">
@@ -33,7 +32,7 @@ postStore.getPostsList()
   <div v-else>
     <!-- item-->
     <div
-      v-for="item in postStore.list"
+      v-for="item in userPostStore.list"
       :key="item._id"
       class="w-full bg-white border-2 border-black rounded-lg mt-4 shadow-post p-6"
     >
@@ -41,9 +40,9 @@ postStore.getPostsList()
       <div class="post-user flex items-center">
         <!-- 頭像 -->
         <div class="avatar overflow-hidden item mr-4">
-          <RouterLink :to="{ path: `/user/${item.user._id}` }">
+          <RouterLink :to="{ path: `/user/${userPostStore.user._id}` }">
             <img
-              :src="item.user?.avatar"
+              :src="userPostStore.user?.avatar"
               class="object-cover h-full w-full"
               alt=""
             />
@@ -53,9 +52,9 @@ postStore.getPostsList()
           <p class="font-bold">
             <RouterLink
               class="hover:underline"
-              :to="{ path: `/user/${item.user._id}` }"
+              :to="{ path: `/user/${userPostStore.user._id}` }"
             >
-              {{ item.user?.nickname }}
+              {{ userPostStore.user?.nickname }}
             </RouterLink>
           </p>
           <p class="text-xs text-[#9B9893]">{{ day(item.createdAt) }}</p>
@@ -64,7 +63,7 @@ postStore.getPostsList()
 
       <details
         :class="`details_${item._id}`"
-        @toggle="postStore.getPostComments($event, item._id)"
+        @toggle="userPostStore.getPostComments($event, item._id)"
       >
         <summary class="list-none focus:outline-none cursor-pointer">
           <!-- 內容 -->

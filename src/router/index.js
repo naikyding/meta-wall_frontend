@@ -5,6 +5,7 @@ import { useUserStore } from '../stores/user'
 
 import FilterPost from '@/components/FilterPost.vue'
 import PostList from '@/components/PostList.vue'
+import UserPostList from '@/components/UserPostList.vue'
 import TitleArea from '@/components/TitleArea.vue'
 import NewPostForm from '../views/post/NewPostForm.vue'
 import Follows from '../views/FollowsIndex.vue'
@@ -76,7 +77,7 @@ const router = createRouter({
           name: 'user',
           components: {
             'content-top': userMain,
-            'content-bottom': PostList,
+            'content-bottom': UserPostList,
           },
           meta: { auth: true },
         },
