@@ -1,13 +1,12 @@
 <script setup>
 import { useUserStore } from '@/stores/user'
-import { usePostStore } from '@/stores/posts'
 import { useUserPostsStore } from '../stores/userPosts'
 import { useLikesStore } from '../stores/likes'
 import { dayToNow, day } from '../utils/day'
 import { useCommentStore } from '../stores/comments'
 import { RouterLink } from 'vue-router'
 const userStore = useUserStore()
-const postStore = usePostStore()
+
 const likesStore = useLikesStore()
 const commentStore = useCommentStore()
 const userPostStore = useUserPostsStore()
@@ -64,7 +63,7 @@ const userPostStore = useUserPostsStore()
 
       <details
         :class="`details_${item._id}`"
-        @toggle="postStore.getPostComments($event, item._id)"
+        @toggle="userPostStore.getPostComments($event, item._id)"
       >
         <summary class="list-none focus:outline-none cursor-pointer">
           <!-- 內容 -->
