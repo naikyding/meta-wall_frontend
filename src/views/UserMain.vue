@@ -1,7 +1,13 @@
 <script setup>
-import FilterPost from '@/components/FilterPost.vue'
+import FilterPostByUser from '@/components/FilterPostByUser.vue'
+import { useRoute } from 'vue-router'
 import { useUserStore } from '../stores/user'
+import { useUserPostsStore } from '../stores/userPosts'
 const userStore = useUserStore()
+const userPosts = useUserPostsStore()
+const route = useRoute()
+
+userPosts.getUserPosts(route.params.id)
 </script>
 
 <template>
@@ -31,5 +37,5 @@ const userStore = useUserStore()
     ></div>
   </div>
 
-  <FilterPost />
+  <FilterPostByUser />
 </template>

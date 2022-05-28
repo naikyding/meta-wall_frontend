@@ -51,9 +51,5 @@ export const usePostStore = defineStore('Post', {
         console.log(error)
       }
     },
-
-    getLikes() {
-      console.log('likes')
-    },
   },
 })
