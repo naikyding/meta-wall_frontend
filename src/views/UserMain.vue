@@ -1,13 +1,19 @@
 <script setup>
 import FilterPostByUser from '@/components/FilterPostByUser.vue'
+import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { useFollowsStore } from '../stores/follows'
 import { useUserStore } from '../stores/user'
 import { useUserPostsStore } from '../stores/userPosts'
 const userStore = useUserStore()
 const userPosts = useUserPostsStore()
 const route = useRoute()
+const followSotre = useFollowsStore()
+const userId = route.params.id
+const selfPage = userId === userStore.data.id
 
-userPosts.getUserPosts(route.params.id)
+userPosts.getUserPosts(userId)
+followSotre.getUserFollowList()
 </script>
 
 <template>
@@ -27,9 +33,17 @@ userPosts.getUserPosts(route.params.id)
         <p>{{ userPosts.user.follower?.length }} 人追蹤</p>
       </div>
       <button
-        class="bg-secondary border-2 border-black shadow-post rounded-lg px-8 py-1 font-bold"
+        v-if="!selfPage"
+        @click="userPosts.followUser({ followUserId: userId })"
+        class="border-2 border-black shadow-post rounded-lg px-8 py-1 font-bold"
+        :class="[
+          followSotre.isFollows
+            ? 'bg-[#EFECE7] text-black'
+            : 'bg-secondary hover:bg-primary hover:text-white',
+        ]"
       >
-        追蹤
+        <span v-if="followSotre.isFollows"> 取消追蹤 </span>
+        <span v-else> 追蹤 </span>
       </button>
     </div>
     <div
