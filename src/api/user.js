@@ -12,3 +12,5 @@ export const updatePassword = (newPassword) =>
 
 export const getUserLikes = () => request.get('/likes')
 export const toggleUserLikes = (postId) => request.post('/likes', postId)
+
+export const followUserToggle = (postId) => request.post('/follows', postId)
