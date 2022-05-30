@@ -69,10 +69,7 @@ userProfile.getUserProfile()
       <div class="error-area text-error my-4 text-center h-5">
         <span v-show="userProfile.error.required">請完善個人資料</span>
 
-        <span v-show="false">
-          1.圖片寬高比必需為 1:1，請重新輸入 2. 解析度寬度至少
-          300像素以上，請重新輸入
-        </span>
+        <span v-show="false"> 圖片寬高比必需為 1:1，請重新輸入 </span>
       </div>
 
       <button

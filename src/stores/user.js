@@ -299,18 +299,27 @@ export const useProfileStore = defineStore('User Profile', {
         this.error.required = true
         return false
       }
+      try {
+        const { nickname, gender } = formData
+        const form = new FormData()
+        form.append('nickname', nickname)
+        form.append('gender', gender)
 
-      const { nickname, gender } = formData
-      const form = new FormData()
-      form.append('nickname', nickname)
-      form.append('gender', gender)
+        if (this.file.buffer) {
+          form.append('avatar', this.file.buffer)
+        }
 
-      if (this.file.buffer) {
-        form.append('avatar', this.file.buffer)
+        const res = await updateProfileAPI(form)
+        resStatus(res, this.updateUserProfileSuccess)
+      } catch (error) {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: error.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        })
       }
-
-      const res = await updateProfileAPI(form)
-      resStatus(res, this.updateUserProfileSuccess)
     },
   },
 })
