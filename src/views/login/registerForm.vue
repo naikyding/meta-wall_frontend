@@ -55,6 +55,9 @@
       <span v-show="userRegisterStore.rules.password.length">
         密碼需至少 8 碼以上
       </span>
+      <span v-show="userRegisterStore.rules.password.format">
+        密碼必須英數混合
+      </span>
     </p>
 
     <!-- 確認密碼 Password -->

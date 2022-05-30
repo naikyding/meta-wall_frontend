@@ -108,6 +108,11 @@ export const userUserRegister = defineStore('User Register', {
           state.formStatus.password &&
           state.form.password.length > 0 &&
           state.form.password.length < 8,
+        format:
+          state.form.password &&
+          !/^([a-zA-Z]+\d+|\d+[a-zA-Z]+)[a-zA-Z0-9]*$/.test(
+            state.form.password
+          ),
       },
       passwordConfirm: {
         required:
