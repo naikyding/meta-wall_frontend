@@ -229,4 +229,7 @@ const userPostStore = useUserPostsStore()
 .dot {
   @apply h-[9px] w-[9px] rounded-full border-[1px] border-[#707070];
 }
+.content {
+  white-space: pre;
+}
 </style>
