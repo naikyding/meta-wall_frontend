@@ -232,6 +232,6 @@ postStore.getPostsList()
 }
 
 .content {
-  white-space: pre;
+  white-space: pre-line;
 }
 </style>
