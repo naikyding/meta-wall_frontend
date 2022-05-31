@@ -29,6 +29,9 @@ export const usePostStore = defineStore('Post', {
     },
 
     async getPostsList(q, s) {
+      const detailsEl = document.querySelectorAll('details')
+      if (detailsEl.length > 0) detailsEl.forEach((item) => (item.open = false))
+
       try {
         const res = await getPostsListAPI(q, s)
         resStatus(res, this.getPostsListSuccess)

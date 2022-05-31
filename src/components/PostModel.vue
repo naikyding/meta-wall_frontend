@@ -86,7 +86,7 @@ const props = defineProps({
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-6 w-6 mr-1"
                   :class="[
-                    props.data.likes == userStore.data.id
+                    props.data.likes.includes(userStore.data.id)
                       ? 'text-primary'
                       : 'text-[#9B9893]',
                   ]"
