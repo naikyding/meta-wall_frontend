@@ -35,7 +35,7 @@ const props = defineProps({
         <!-- 貼文者 -->
         <div class="post-user flex items-center">
           <!-- 頭像 -->
-          <div class="avatar overflow-hidden item">
+          <div class="avatar overflow-hidden item h-[45px] w-[45px]">
             <RouterLink :to="{ path: `/user/${props.data.user._id}` }">
               <img
                 class="object-cover h-full w-full"

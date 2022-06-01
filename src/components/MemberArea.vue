@@ -6,7 +6,7 @@ const user = useUserStore()
 </script>
 <template>
   <ul
-    class="bg-white border-2 border-black px-2 lg:px-6 pb-8 font-bold text-sm xl:text-base"
+    class="bg-white border-2 border-black px-2 lg:px-6 pb-8 font-bold text-sm xl:text-base sticky top-[75px]"
   >
     <!-- 張貼動態 -->
     <li>
