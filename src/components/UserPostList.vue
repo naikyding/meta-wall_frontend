@@ -39,7 +39,7 @@ const userPostStore = useUserPostsStore()
       <!-- 貼文者 -->
       <div class="post-user flex items-center">
         <!-- 頭像 -->
-        <div class="avatar overflow-hidden item mr-4">
+        <div class="avatar overflow-hidden item mr-4 h-[45px] w-[45px]">
           <RouterLink :to="{ path: `/user/${userPostStore.user._id}` }">
             <img
               :src="userPostStore.user?.avatar"
@@ -153,7 +153,7 @@ const userPostStore = useUserPostsStore()
           <!-- 留言 -->
           <div class="new-post my-[18px] flex items-center">
             <!-- 用戶頭像 -->
-            <div class="avatar overflow-hidden item">
+            <div class="avatar overflow-hidden item h-[45px] w-[45px]">
               <img
                 :src="userStore.data.avatar"
                 class="object-cover h-full w-full"
