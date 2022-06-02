@@ -42,5 +42,8 @@ const loginStore = useLoginStore()
     </button>
   </form>
 
-  <RouterLink to="/register">註冊帳號</RouterLink>
+  <div class="flex justify-between">
+    <RouterLink to="/forgot-password">忘記密碼</RouterLink>
+    <RouterLink to="/register">註冊帳號</RouterLink>
+  </div>
 </template>

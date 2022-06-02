@@ -103,6 +103,12 @@ const router = createRouter({
       name: 'register',
       component: () => import('../views/login/LoginMain.vue'),
     },
+    // 忘記密碼
+    {
+      path: '/forgot-password',
+      name: 'forgotPassword',
+      component: () => import('../views/login/LoginMain.vue'),
+    },
   ],
 })
 

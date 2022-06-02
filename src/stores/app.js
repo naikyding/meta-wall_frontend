@@ -14,7 +14,7 @@ export const useAppStore = defineStore('App Store', {
   }),
   getters: {
     navStatus: (state) => {
-      const navDisableRouter = ['login', 'register']
+      const navDisableRouter = ['login', 'register', 'forgotPassword']
       return navDisableRouter.includes(state.routerName)
     },
     contentTopTitle: (state) => {
