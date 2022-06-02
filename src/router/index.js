@@ -84,6 +84,11 @@ const router = createRouter({
       ],
     },
     {
+      path: '/reset-password/:userId/:token',
+      name: 'resetPassword',
+      component: () => import('../views/login/LoginMain.vue'),
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting

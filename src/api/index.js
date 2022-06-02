@@ -15,6 +15,8 @@ import {
   getUserLikes,
   toggleUserLikes,
   followUserToggle,
+  forgotPassword,
+  resetPassword,
 } from './user'
 
 export const getPostsListAPI = getPostsList
@@ -36,3 +38,5 @@ export const getUserLikesAPI = getUserLikes
 export const toggleUserLikesAPI = toggleUserLikes
 
 export const followUserToggleAPI = followUserToggle
+export const forgotPasswordAPI = forgotPassword
+export const resetPasswordAPI = resetPassword
