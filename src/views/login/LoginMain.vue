@@ -1,23 +1,30 @@
 <script setup>
 import LoginForm from './loginForm.vue'
 import registerForm from './registerForm.vue'
+import forgotPassword from './ForgotPassword.vue'
+import resetPassword from './ResetPassword.vue'
 import { useLoginStore } from '@/stores/login'
 import { onMounted, onUpdated } from 'vue'
 import { useRoute } from 'vue-router'
 
 const loginStore = useLoginStore()
 const route = useRoute()
-const formComponents = [LoginForm, registerForm]
+const formComponents = [LoginForm, registerForm, forgotPassword, resetPassword]
 const checkComponentActive = (routerName) => {
-  loginStore.activeComponentIndex = routerName === '/register' ? 1 : 0
+  let activeIndex = 0
+  if (routerName === 'register') activeIndex = 1
+  else if (routerName === 'forgotPassword') activeIndex = 2
+  else if (routerName === 'resetPassword') activeIndex = 3
+  else activeIndex = 0
+  loginStore.activeComponentIndex = activeIndex
 }
 
 onMounted(() => {
-  checkComponentActive(route.path)
+  checkComponentActive(route.name)
 })
 
 onUpdated(() => {
-  checkComponentActive(route.path)
+  checkComponentActive(route.name)
 })
 </script>
 

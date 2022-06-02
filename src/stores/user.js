@@ -12,6 +12,7 @@ import {
   userProfileAPI,
   updateProfileAPI,
   updatePasswordAPI,
+  resetPasswordAPI,
 } from '@/api'
 
 export const useUserStore = defineStore('user', {
@@ -360,7 +361,7 @@ export const useUserPassword = defineStore('User Password', {
       }
     },
 
-    updatePasswordSuccess(message, data) {
+    updatePasswordSuccess(message) {
       const profileMainStore = useProfileMainStore()
 
       this.resetForm()
@@ -385,13 +386,48 @@ export const useUserPassword = defineStore('User Password', {
       })
     },
 
-    async updatePassword(newPassword) {
+    async updatePassword(passwordForm) {
       try {
         if (!this.form.password || !this.form.passwordConfirm) return false
-        const res = await updatePasswordAPI(newPassword)
+        const res = await updatePasswordAPI(passwordForm)
         resStatus(res, this.updatePasswordSuccess)
       } catch ({ data }) {
         this.updatePasswordError(data)
+      }
+    },
+
+    resetPasswordSuccess(message) {
+      this.resetForm()
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+
+      router.replace({ path: '/login' })
+    },
+
+    async resetPassword(form) {
+      if (
+        !form.password ||
+        !form.passwordConfirm ||
+        !form.userId ||
+        !form.token
+      )
+        return false
+      try {
+        const res = await resetPasswordAPI(form)
+        resStatus(res, this.resetPasswordSuccess)
+      } catch (error) {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: error.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        })
       }
     },
   },
