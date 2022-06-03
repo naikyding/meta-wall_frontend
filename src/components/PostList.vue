@@ -234,4 +234,8 @@ postStore.getPostsList()
 .content {
   white-space: pre-line;
 }
+
+details summary::-webkit-details-marker {
+  display: none;
+}
 </style>
