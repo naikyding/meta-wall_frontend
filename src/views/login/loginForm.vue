@@ -27,7 +27,7 @@ const loginStore = useLoginStore()
       @keydown.enter="loginStore.userLogin(loginStore.form)"
     />
 
-    <p class="text-error text-sm h-4">
+    <p class="h-4 text-sm text-error">
       <span v-show="loginStore.loginError">
         {{ loginStore.loginError || '登入錯誤，請重試' }}
       </span>

@@ -9,7 +9,7 @@ const appStore = useAppStore()
 
 <template>
   <div
-    class="bg-grid bg-[length:63px_63px] bg-baseBg bg-center h-screen relative overflow-y-auto"
+    class="bg-grid relative h-screen overflow-y-auto bg-baseBg bg-[length:63px_63px] bg-center"
     :class="{ 'pb-[100px] md:pb-16': !appStore.navStatus }"
   >
     <NavigationMenu class="z-50" :class="{ hidden: appStore.navStatus }" />

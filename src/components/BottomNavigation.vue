@@ -3,9 +3,9 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <nav class="fixed bottom-4 left-0 w-full px-4 block md:hidden">
+  <nav class="fixed bottom-4 left-0 block w-full px-4 md:hidden">
     <ul
-      class="flex justify-around items-center bg-baseBg border-[3px] border-black h-[65px] rounded-r-full rounded-l-full px-10"
+      class="flex h-[65px] items-center justify-around rounded-r-full rounded-l-full border-[3px] border-black bg-baseBg px-10"
     >
       <!-- home -->
       <li class="">
@@ -98,6 +98,6 @@ import { RouterLink } from 'vue-router'
 
 <style>
 .router-item {
-  @apply flex-all-center border-[3px] border-black rounded-full w-[48px] h-[48px];
+  @apply flex-all-center h-[48px] w-[48px] rounded-full border-[3px] border-black;
 }
 </style>

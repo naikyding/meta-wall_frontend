@@ -29,18 +29,18 @@ onUpdated(() => {
 </script>
 
 <template>
-  <div class="flex justify-center items-center py-4 md:py-0 mt-0 h-full">
+  <div class="mt-0 flex h-full items-center justify-center py-4 md:py-0">
     <div
-      class="md:flex items-center bg-baseBg p-6 lg:p-10 shadow-card border-2 border-black"
+      class="items-center border-2 border-black bg-baseBg p-6 shadow-card md:flex lg:p-10"
     >
       <!-- img -->
       <div
-        class="hidden md:block w-[300px] lg:w-[350px] h-[200px] md:h-[341px] img mr-0 lg:mr-12 bg-[url('/images/main.png')] bg-contain bg-no-repeat bg-center"
+        class="img mr-0 hidden h-[200px] w-[300px] bg-[url('/images/main.png')] bg-contain bg-center bg-no-repeat md:block md:h-[341px] lg:mr-12 lg:w-[350px]"
       ></div>
       <!-- 表單 -->
       <div class="input-area text-center">
         <div class="title">
-          <a class="logo text-primary text-3xl md:text-6xl font-logo" href="/"
+          <a class="logo font-logo text-3xl text-primary md:text-6xl" href="/"
             >MetaWall</a
           >
         </div>

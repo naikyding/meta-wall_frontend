@@ -1,6 +1,6 @@
 <template>
   <div
-    class="description md-4 md:mb-8 mt-2 md:mt-4 text-lg md:text-2xl font-bold"
+    class="description md-4 mt-2 text-lg font-bold md:mb-8 md:mt-4 md:text-2xl"
   >
     忘記密碼
   </div>
@@ -13,7 +13,7 @@
       placeholder="請輸入 Email"
       @blur.once="forgotPasswordStore.inputStatus.email = true"
     />
-    <p class="text-error text-left text-sm h-5">
+    <p class="h-5 text-left text-sm text-error">
       <span v-show="forgotPasswordStore.rules.email.required">
         這是必填欄位
       </span>

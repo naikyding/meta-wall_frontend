@@ -13,22 +13,22 @@ const dropdownToggle = () => {
 
 <template>
   <nav
-    class="px-4 md:px-12 lg:px-0 menu grid grid-cols-5 gap-0 bg-white h-[60px] fixed top-0 left-0 right-0 border-b-[3px] border-black z-10"
+    class="menu fixed top-0 left-0 right-0 z-10 grid h-[60px] grid-cols-5 gap-0 border-b-[3px] border-black bg-white px-4 md:px-12 lg:px-0"
   >
     <ul
-      class="font-logo col-start-1 lg:col-start-2 col-span-5 lg:col-span-3 flex justify-between"
+      class="col-span-5 col-start-1 flex justify-between font-logo lg:col-span-3 lg:col-start-2"
     >
       <li class="my-auto">
-        <a href="/" class="text-black text-2xl">MetaWall</a>
+        <a href="/" class="text-2xl text-black">MetaWall</a>
       </li>
-      <li class="my-auto relative">
-        <button class="flex relative" @click="dropdownToggle">
+      <li class="relative my-auto">
+        <button class="relative flex" @click="dropdownToggle">
           <div
-            class="avatar w-[30px] h-[30px] border-2 rounded-full mr-[10px] overflow-hidden"
+            class="avatar mr-[10px] h-[30px] w-[30px] overflow-hidden rounded-full border-2"
           >
             <img
               :src="userStore.data.avatar"
-              class="object-cover w-full h-full"
+              class="h-full w-full object-cover"
               alt=""
             />
           </div>
@@ -38,7 +38,7 @@ const dropdownToggle = () => {
         <!-- dropdown -->
         <ul
           v-if="!appStore.disableMemberItem"
-          class="control bg-white border-2 border-black w-[180px] text-center absolute top-[35px] right-0 md:left-0"
+          class="control absolute top-[35px] right-0 w-[180px] border-2 border-black bg-white text-center md:left-0"
           @mouseleave="dropdownToggle"
           v-click-away="dropdownToggle"
         >
@@ -51,7 +51,7 @@ const dropdownToggle = () => {
               >我的貼文牆</RouterLink
             >
           </li>
-          <li class="py-2 hover:bg-baseBg border-y-2">
+          <li class="border-y-2 py-2 hover:bg-baseBg">
             <RouterLink :to="{ path: '/profile' }" class="block"
               >修改個人資料</RouterLink
             >
@@ -63,7 +63,7 @@ const dropdownToggle = () => {
           </li>
           <!-- dropdown shadow -->
           <div
-            class="offset-box absolute top-1 bg-white left-1 right-[-8px] bottom-[-8px] z-[-1] border-2 border-black"
+            class="offset-box absolute top-1 left-1 right-[-8px] bottom-[-8px] z-[-1] border-2 border-black bg-white"
           ></div>
         </ul>
       </li>
