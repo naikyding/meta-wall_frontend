@@ -1,12 +1,12 @@
 <template>
   <div
-    class="post-area border-2 border-black bg-white rounded-lg mt-4 p-8 shadow-post"
+    class="post-area mt-4 rounded-lg border-2 border-black bg-white p-8 shadow-post"
   >
     <label>
       貼文內容
       <textarea
         v-model="newPost.form.content"
-        class="block border-2 border-black w-full h-[168px] resize-none px-4 py-3 mt-1"
+        class="mt-1 block h-[168px] w-full resize-none border-2 border-black px-4 py-3"
         placeholder="請輸入你的貼文內容"
       >
       </textarea>
@@ -16,7 +16,7 @@
     <form enctype="multipart/form-data">
       <label>
         <div
-          class="rounded inline-block cursor-pointer bg-black text-white px-8 py-1 mt-4"
+          class="mt-4 inline-block cursor-pointer rounded bg-black px-8 py-1 text-white"
         >
           上傳圖片
         </div>
@@ -29,17 +29,17 @@
       </label>
     </form>
     <!-- IMG -->
-    <div class="img-area relative group">
+    <div class="img-area group relative">
       <img
         v-show="newPost.previewImg.url"
-        class="border-2 border-black rounded-lg mt-4"
+        class="mt-4 rounded-lg border-2 border-black"
         :src="newPost.previewImg.url"
         :alt="newPost.previewImg.name"
       />
       <div
         v-show="newPost.previewImg.url"
         @click="newPost.removePreview"
-        class="text-center text-white hover:text-secondary remove-img absolute top-4 left-4"
+        class="remove-img absolute top-4 left-4 text-center text-white hover:text-secondary"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@
     </div>
 
     <!-- 送出貼文 -->
-    <div class="submit-area text-center mt-8">
+    <div class="submit-area mt-8 text-center">
       <!-- 圖檔超過大小 -->
       <div v-show="newPost.imageOverSize" class="error-area text-error">
         圖片檔案過大，僅限 1mb 以下檔案
@@ -65,7 +65,7 @@
 
       <!-- 送出貼文 -->
       <button
-        class="rounded-lg h-[54px] w-[323px] px-8 py-1 mt-4 border-2 border-black shadow-base"
+        class="mt-4 h-[54px] w-[323px] rounded-lg border-2 border-black px-8 py-1 shadow-base"
         :class="[newPost.submitBtnStatus]"
         @click="newPost.submitPost"
       >

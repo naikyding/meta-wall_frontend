@@ -7,18 +7,18 @@ const postStore = usePostStore()
   <div class="grid grid-cols-3 gap-3">
     <!-- select -->
     <div
-      class="border-2 border-black bg-white col-span-3 sm:col-span-1 flex-all-center relative"
+      class="flex-all-center relative col-span-3 border-2 border-black bg-white sm:col-span-1"
     >
       <select
         v-model="postStore.filter.s"
-        class="w-full h-[46px] px-4 appearance-none focus:outline-none"
+        class="h-[46px] w-full appearance-none px-4 focus:outline-none"
         @change="postStore.getPostsList(postStore.filter.q, postStore.filter.s)"
       >
         <option value="n">最新貼文</option>
         <option value="o">最舊貼文</option>
       </select>
       <svg
-        class="fill-current h-4 w-4 pointer-events-none absolute right-4"
+        class="fill-current pointer-events-none absolute right-4 h-4 w-4"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
       >
@@ -29,12 +29,12 @@ const postStore = usePostStore()
     </div>
     <!-- input -->
     <div
-      class="border-2 border-black col-span-3 sm:col-span-2 bg-white flex relative"
+      class="relative col-span-3 flex border-2 border-black bg-white sm:col-span-2"
     >
       <input
         v-model="postStore.filter.q"
         type="text"
-        class="focus:outline-none w-full pl-4 h-[46px] pr-[64px]"
+        class="h-[46px] w-full pl-4 pr-[64px] focus:outline-none"
         placeholder="搜尋貼文"
         @keydown.enter="
           postStore.getPostsList(postStore.filter.q, postStore.filter.s)
@@ -42,7 +42,7 @@ const postStore = usePostStore()
       />
       <button
         @click="postStore.getPostsList(postStore.filter.q, postStore.filter.s)"
-        class="bg-primary hover:bg-secondary hover:text-black w-[46px] h-[46px] text-white grow-0 flex-all-center absolute right-0 border-l-2 border-black active:bg-primary"
+        class="flex-all-center absolute right-0 h-[46px] w-[46px] grow-0 border-l-2 border-black bg-primary text-white hover:bg-secondary hover:text-black active:bg-primary"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -6,7 +6,7 @@ const user = useUserStore()
 </script>
 <template>
   <ul
-    class="bg-white border-2 border-black px-2 lg:px-6 pb-8 font-bold text-sm xl:text-base sticky top-[75px]"
+    class="sticky top-[75px] border-2 border-black bg-white px-2 pb-8 text-sm font-bold lg:px-6 xl:text-base"
   >
     <!-- 張貼動態 -->
     <li>
@@ -18,12 +18,12 @@ const user = useUserStore()
     <li>
       <RouterLink
         :to="{ path: `/user/${user.data.id ? user.data.id : ' '}` }"
-        class="flex items-center group"
+        class="group flex items-center"
       >
-        <div class="avatar overflow-hidden item">
+        <div class="avatar item overflow-hidden">
           <img
             :src="user.data.avatar"
-            class="object-cover h-full w-full"
+            class="h-full w-full object-cover"
             alt=""
           />
         </div>
@@ -63,7 +63,7 @@ const user = useUserStore()
     <li class="flex items-center">
       <RouterLink
         to="/likes"
-        class="group flex items-center hover:text-primary w-full"
+        class="group flex w-full items-center hover:text-primary"
       >
         <div class="item flex-all-center">
           <svg
@@ -89,6 +89,6 @@ const user = useUserStore()
 
 <style>
 .item {
-  @apply w-[35px] h-[35px] lg:w-[50px] lg:h-[50px] border-2 border-black rounded-full mr-2 lg:mr-4 bg-[#E2EDFA] group-hover:bg-primary;
+  @apply mr-2 h-[35px] w-[35px] rounded-full border-2 border-black bg-[#E2EDFA] group-hover:bg-primary lg:mr-4 lg:h-[50px] lg:w-[50px];
 }
 </style>

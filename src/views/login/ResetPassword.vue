@@ -1,6 +1,6 @@
 <template>
   <div
-    class="description md-4 md:mb-8 mt-2 md:mt-4 text-lg md:text-2xl font-bold"
+    class="description md-4 mt-2 text-lg font-bold md:mb-8 md:mt-4 md:text-2xl"
   >
     重置密碼
   </div>
@@ -23,7 +23,7 @@
       />
     </label>
 
-    <div class="error-area text-error my-4 text-center h-5">
+    <div class="error-area my-4 h-5 text-center text-error">
       <span v-show="userPassword.error.status">
         {{ userPassword.error.message }}
       </span>

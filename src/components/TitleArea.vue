@@ -1,12 +1,12 @@
 <template>
   <div class="relative">
     <div
-      class="relative bg-white border-2 text-xl border-black text-center py-5 z-[1]"
+      class="relative z-[1] border-2 border-black bg-white py-5 text-center text-xl"
     >
       {{ appStore.contentTopTitle }}
     </div>
     <div
-      class="absolute border-2 w-full h-full top-1 right-1 border-black bg-white"
+      class="absolute top-1 right-1 h-full w-full border-2 border-black bg-white"
     ></div>
   </div>
 </template>

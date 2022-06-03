@@ -9,7 +9,7 @@ const appStore = useAppStore()
 
 <template>
   <div
-    class="bg-grid bg-[length:63px_63px] bg-baseBg bg-center h-screen relative overflow-y-auto"
+    class="bg-grid relative h-screen overflow-y-auto bg-baseBg bg-[length:63px_63px] bg-center"
     :class="{ 'pb-[100px] md:pb-16': !appStore.navStatus }"
   >
     <NavigationMenu class="z-50" :class="{ hidden: appStore.navStatus }" />
@@ -24,8 +24,7 @@ const appStore = useAppStore()
 
 <style>
 .bg-grid {
-  background-image:
-    linear-gradient(#70707023 1px, transparent 0),
+  background-image: linear-gradient(#70707023 1px, transparent 0),
     linear-gradient(90deg, #70707023 1px, transparent 0);
 }
 </style>

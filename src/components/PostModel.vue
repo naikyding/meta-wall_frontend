@@ -24,21 +24,21 @@ const props = defineProps({
   <!-- overlay -->
   <div
     v-if="props.status"
-    class="absolute bg-black inset-0 z-50 bg-opacity-70 flex justify-center items-center"
+    class="absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"
   >
     <div
-      class="bg-white rounded-lg max-h-[800px] w-[600px] overflow-y-scroll border-2 border-black shadow-post"
+      class="max-h-[800px] w-[600px] overflow-y-scroll rounded-lg border-2 border-black bg-white shadow-post"
       v-click-away="likesStore.closePostModel"
     >
       <!-- 文章內容 -->
-      <div class="w-full bg-white rounded-lg p-6">
+      <div class="w-full rounded-lg bg-white p-6">
         <!-- 貼文者 -->
         <div class="post-user flex items-center">
           <!-- 頭像 -->
-          <div class="avatar overflow-hidden item h-[45px] w-[45px]">
+          <div class="avatar item h-[45px] w-[45px] overflow-hidden">
             <RouterLink :to="{ path: `/user/${props.data.user._id}` }">
               <img
-                class="object-cover h-full w-full"
+                class="h-full w-full object-cover"
                 :src="props.data.user?.avatar"
                 :alt="props.data.user.nickname"
               />
@@ -60,7 +60,7 @@ const props = defineProps({
         </div>
 
         <details :class="`details_${props.data._id}`">
-          <summary class="list-none focus:outline-none cursor-pointer">
+          <summary class="cursor-pointer list-none focus:outline-none">
             <!-- 內容 -->
             <div class="content mt-4">
               {{ props.data.content }}
@@ -69,7 +69,7 @@ const props = defineProps({
             <!-- 圖片 -->
             <div v-show="props.data.image" class="image my-4">
               <img
-                class="border-2 border-black rounded-lg w-full"
+                class="w-full rounded-lg border-2 border-black"
                 :src="props.data.image"
                 :alt="props.data.content"
               />
@@ -84,7 +84,7 @@ const props = defineProps({
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6 mr-1"
+                  class="mr-1 h-6 w-6"
                   :class="[
                     props.data.likes.includes(userStore.data.id)
                       ? 'text-primary'
@@ -110,10 +110,10 @@ const props = defineProps({
               </button>
 
               <!-- 留言 -->
-              <button class="flex mx-4 items-center pointer-events-none">
+              <button class="pointer-events-none mx-4 flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6 mr-1"
+                  class="mr-1 h-6 w-6"
                   :class="[
                     props.data.comments?.length > 0
                       ? 'text-primary'
@@ -146,21 +146,21 @@ const props = defineProps({
             <div class="new-post my-[18px] flex items-center">
               <!-- 用戶頭像 -->
               <div
-                class="overflow-hidden h-[45px] w-[45px] border-2 border-black rounded-full mr-2"
+                class="mr-2 h-[45px] w-[45px] overflow-hidden rounded-full border-2 border-black"
               >
                 <img
                   :src="userStore.data.avatar"
-                  class="object-cover h-full w-full"
+                  class="h-full w-full object-cover"
                   :alt="userStore.data.nickname"
                 />
               </div>
               <!-- input -->
               <div
-                class="input-area flex border-2 border-black h-[40px] flex-1"
+                class="input-area flex h-[40px] flex-1 border-2 border-black"
               >
                 <input
                   type="text"
-                  class="focus:outline-none w-full px-4"
+                  class="w-full px-4 focus:outline-none"
                   placeholder="留言..."
                   v-model.trim="commentStore.form.content"
                 />
@@ -171,7 +171,7 @@ const props = defineProps({
                       content: commentStore.form.content,
                     })
                   "
-                  class="w-[128px] bg-primary text-white border-l-2 border-black hover:bg-secondary focus:outline-none hover:text-black focus:ring active:bg-primary"
+                  class="w-[128px] border-l-2 border-black bg-primary text-white hover:bg-secondary hover:text-black focus:outline-none focus:ring active:bg-primary"
                 >
                   留言
                 </button>
@@ -183,17 +183,17 @@ const props = defineProps({
               <!-- item -->
               <div
                 v-for="comment in props.data.comments"
-                class="comment__item bg-baseBg/[.4] px-4 py-[18px] rounded-lg my-4"
+                class="comment__item my-4 rounded-lg bg-baseBg/[.4] px-4 py-[18px]"
                 :key="comment._id"
               >
                 <!-- 貼文者 -->
                 <div class="post-user flex">
                   <!-- 頭像 -->
-                  <div class="avatar overflow-hidden item mr-4">
+                  <div class="avatar item mr-4 overflow-hidden">
                     <RouterLink :to="{ path: `/user/${comment.user._id}` }">
                       <img
                         :src="comment.user.avatar"
-                        class="object-cover h-full w-full"
+                        class="h-full w-full object-cover"
                         alt=""
                       />
                     </RouterLink>

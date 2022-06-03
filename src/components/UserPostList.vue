@@ -16,14 +16,14 @@ const userPostStore = useUserPostsStore()
   <!-- 沒有貼文 -->
   <div
     v-if="userPostStore.list?.length < 1"
-    class="no-data w-full bg-white border-2 border-black rounded-lg mt-4 shadow-post"
+    class="no-data mt-4 w-full rounded-lg border-2 border-black bg-white shadow-post"
   >
-    <div class="bar flex py-5 border-b-2 px-4">
+    <div class="bar flex border-b-2 py-5 px-4">
       <div class="dot bg-[#DE4B63]"></div>
-      <div class="dot bg-[#FAA722] mx-[6px]"></div>
+      <div class="dot mx-[6px] bg-[#FAA722]"></div>
       <div class="dot bg-[#83C51D]"></div>
     </div>
-    <div class="text-center py-8 text-[#9B9893]">
+    <div class="py-8 text-center text-[#9B9893]">
       目前尚無動態，新增一則貼文吧！
     </div>
   </div>
@@ -34,16 +34,16 @@ const userPostStore = useUserPostsStore()
     <div
       v-for="item in userPostStore.list"
       :key="item._id"
-      class="w-full bg-white border-2 border-black rounded-lg mt-4 shadow-post p-6"
+      class="mt-4 w-full rounded-lg border-2 border-black bg-white p-6 shadow-post"
     >
       <!-- 貼文者 -->
       <div class="post-user flex items-center">
         <!-- 頭像 -->
-        <div class="avatar overflow-hidden item mr-4 h-[45px] w-[45px]">
+        <div class="avatar item mr-4 h-[45px] w-[45px] overflow-hidden">
           <RouterLink :to="{ path: `/user/${userPostStore.user._id}` }">
             <img
               :src="userPostStore.user?.avatar"
-              class="object-cover h-full w-full"
+              class="h-full w-full object-cover"
               alt=""
             />
           </RouterLink>
@@ -65,7 +65,7 @@ const userPostStore = useUserPostsStore()
         :class="`details_${item._id}`"
         @toggle="userPostStore.getPostComments($event, item._id)"
       >
-        <summary class="list-none focus:outline-none cursor-pointer">
+        <summary class="cursor-pointer list-none focus:outline-none">
           <!-- 內容 -->
           <div class="content mt-4">
             {{ item.content }}
@@ -74,7 +74,7 @@ const userPostStore = useUserPostsStore()
           <!-- 圖片 -->
           <div v-show="item.image" class="image my-4">
             <img
-              class="border-2 border-black rounded-lg w-full"
+              class="w-full rounded-lg border-2 border-black"
               :src="item.image"
               :alt="item.content"
             />
@@ -94,7 +94,7 @@ const userPostStore = useUserPostsStore()
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 mr-1"
+                class="mr-1 h-6 w-6"
                 :class="[
                   item.likes.includes(userStore.data.id)
                     ? 'text-primary'
@@ -120,10 +120,10 @@ const userPostStore = useUserPostsStore()
             </button>
 
             <!-- 留言 -->
-            <button class="flex mx-4 items-center pointer-events-none">
+            <button class="pointer-events-none mx-4 flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 mr-1"
+                class="mr-1 h-6 w-6"
                 :class="[
                   item.comments?.length > 0 ? 'text-primary' : 'text-[#9B9893]',
                 ]"
@@ -153,18 +153,18 @@ const userPostStore = useUserPostsStore()
           <!-- 留言 -->
           <div class="new-post my-[18px] flex items-center">
             <!-- 用戶頭像 -->
-            <div class="avatar overflow-hidden item h-[45px] w-[45px]">
+            <div class="avatar item h-[45px] w-[45px] overflow-hidden">
               <img
                 :src="userStore.data.avatar"
-                class="object-cover h-full w-full"
+                class="h-full w-full object-cover"
                 alt=""
               />
             </div>
             <!-- input -->
-            <div class="input-area flex border-2 border-black h-[40px] flex-1">
+            <div class="input-area flex h-[40px] flex-1 border-2 border-black">
               <input
                 type="text"
-                class="focus:outline-none w-full px-4"
+                class="w-full px-4 focus:outline-none"
                 placeholder="留言..."
                 v-model="commentStore.form.content"
               />
@@ -175,7 +175,7 @@ const userPostStore = useUserPostsStore()
                     content: commentStore.form.content,
                   })
                 "
-                class="w-[128px] bg-primary text-white border-l-2 border-black hover:bg-secondary focus:outline-none hover:text-black focus:ring active:bg-primary"
+                class="w-[128px] border-l-2 border-black bg-primary text-white hover:bg-secondary hover:text-black focus:outline-none focus:ring active:bg-primary"
               >
                 留言
               </button>
@@ -187,17 +187,17 @@ const userPostStore = useUserPostsStore()
             <!-- item -->
             <div
               v-for="comment in item.comments"
-              class="comment__item bg-baseBg/[.4] px-4 py-[18px] rounded-lg my-4"
+              class="comment__item my-4 rounded-lg bg-baseBg/[.4] px-4 py-[18px]"
               :key="comment._id"
             >
               <!-- 貼文者 -->
               <div class="post-user flex">
                 <!-- 頭像 -->
-                <div class="avatar overflow-hidden item mr-4">
+                <div class="avatar item mr-4 overflow-hidden">
                   <RouterLink :to="{ path: `/user/${comment.user?._id}` }">
                     <img
                       :src="comment.user?.avatar"
-                      class="object-cover h-full w-full"
+                      class="h-full w-full object-cover"
                       :alt="comment.user?.avatar"
                     />
                   </RouterLink>

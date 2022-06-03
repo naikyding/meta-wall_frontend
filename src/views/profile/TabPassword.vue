@@ -25,7 +25,7 @@ const userPassword = useUserPassword()
       />
     </label>
 
-    <div class="error-area text-error my-4 text-center h-5">
+    <div class="error-area my-4 h-5 text-center text-error">
       <span v-show="userPassword.error.status">
         {{ userPassword.error.message }}
       </span>

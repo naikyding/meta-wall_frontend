@@ -6,11 +6,11 @@ import { RouterView } from 'vue-router'
 <template>
   <div>
     <main
-      class="px-4 md:px-12 lg:px-0 post-list grid grid-cols-5 gap-0 pt-4 lg:pt-[49px]"
+      class="post-list grid grid-cols-5 gap-0 px-4 pt-4 md:px-12 lg:px-0 lg:pt-[49px]"
     >
       <!-- post -->
       <div
-        class="col=start-1 md:col-start-1 lg:col-start-2 col-span-5 md:col-span-4 lg:col-span-2 pr-0 md:pr-6"
+        class="col=start-1 col-span-5 pr-0 md:col-span-4 md:col-start-1 md:pr-6 lg:col-span-2 lg:col-start-2"
       >
         <RouterView name="content-top" />
         <RouterView name="content-bottom" />

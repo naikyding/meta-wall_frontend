@@ -1,6 +1,6 @@
 <template>
   <div
-    class="description md-4 md:mb-8 mt-2 md:mt-4 text-lg md:text-2xl font-bold"
+    class="description md-4 mt-2 text-lg font-bold md:mb-8 md:mt-4 md:text-2xl"
   >
     註冊
   </div>
@@ -13,7 +13,7 @@
       placeholder="暱稱"
       @blur.once="userRegisterStore.formStatus.nickname = true"
     />
-    <p class="text-error text-left text-sm h-5">
+    <p class="h-5 text-left text-sm text-error">
       <span v-show="userRegisterStore.rules.nickname.required">
         這是必填欄位
       </span>
@@ -30,7 +30,7 @@
       placeholder="Email"
       @blur.once="userRegisterStore.formStatus.email = true"
     />
-    <p class="text-error text-left text-sm h-5">
+    <p class="h-5 text-left text-sm text-error">
       <span v-show="userRegisterStore.rules.email.required">
         這是必填欄位
       </span>
@@ -48,7 +48,7 @@
       placeholder="Password"
       @blur.once="userRegisterStore.formStatus.password = true"
     />
-    <p class="text-error text-left text-sm h-5">
+    <p class="h-5 text-left text-sm text-error">
       <span v-show="userRegisterStore.rules.password.required">
         這是必填欄位
       </span>
@@ -68,7 +68,7 @@
       placeholder="確認密碼"
       @blur.once="userRegisterStore.formStatus.passwordConfirm = true"
     />
-    <p class="text-error text-left text-sm h-5">
+    <p class="h-5 text-left text-sm text-error">
       <span v-show="userRegisterStore.rules.passwordConfirm.required">
         這是必填欄位
       </span>
@@ -82,7 +82,7 @@
       </span>
     </p>
 
-    <p class="text-error text-center text-sm mt-2">
+    <p class="mt-2 text-center text-sm text-error">
       <span
         v-show="
           userRegisterStore.errorMessageStatus &&
