@@ -226,6 +226,7 @@ const props = defineProps({
 .test {
   color: red;
 }
+
 details summary::-webkit-details-marker {
   display: none;
 }
