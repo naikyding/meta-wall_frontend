@@ -1,7 +1,22 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import { useLoginStore } from '@/stores/user'
+import request from '../../api/request'
+import { useProfileStore } from '../../stores/user'
+import router from '../../router'
+
 const loginStore = useLoginStore()
+const userProfileStore = useProfileStore()
+const route = useRoute()
+const jwtToken = route.query.token
+
+if (jwtToken) {
+  const token = `Bearer ${jwtToken}`
+  localStorage.setItem('token', token)
+  request.defaults.headers.common['Authorization'] = token
+  userProfileStore.getUserProfile()
+  router.replace({ path: '/' })
+}
 </script>
 
 <template>
