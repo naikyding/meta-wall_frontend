@@ -11,6 +11,9 @@ export const useAppStore = defineStore('App Store', {
   state: () => ({
     routerName: '',
     disableMemberItem: true,
+
+    // loader display
+    loading: false,
   }),
   getters: {
     navStatus: (state) => {
