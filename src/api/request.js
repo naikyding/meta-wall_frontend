@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useAppStore } from '../stores/app'
 const baseURL = import.meta.env.VITE_API_URL
 
 const request = axios.create({
@@ -8,6 +9,8 @@ const request = axios.create({
 
 request.interceptors.request.use((config) => {
   const localToken = localStorage.getItem('token')
+  const appStore = useAppStore()
+  appStore.loading = true
 
   if (!config.headers.Authorization && localToken)
     config.headers.Authorization = localToken
@@ -17,9 +20,13 @@ request.interceptors.request.use((config) => {
 
 request.interceptors.response.use(
   (response) => {
+    const appStore = useAppStore()
+    appStore.loading = false
     return response.data
   },
   (error) => {
+    const appStore = useAppStore()
+    appStore.loading = false
     return Promise.reject(error.response)
   }
 )
