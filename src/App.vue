@@ -3,7 +3,7 @@ import { RouterView } from 'vue-router'
 import NavigationMenu from '@/components/NavigationMenu.vue'
 import { useAppStore } from './stores/app'
 import BottomNavigation from '@/components/BottomNavigation.vue'
-
+import LoadingCircle from '@/components/LoadingCircle.vue'
 const appStore = useAppStore()
 </script>
 
@@ -12,8 +12,8 @@ const appStore = useAppStore()
     class="bg-grid relative h-screen overflow-y-auto bg-baseBg bg-[length:63px_63px] bg-center"
     :class="{ 'pb-[100px] md:pb-16': !appStore.navStatus }"
   >
+    <LoadingCircle v-show="appStore.loading" />
     <NavigationMenu class="z-50" :class="{ hidden: appStore.navStatus }" />
-
     <RouterView
       class="font-dec text-black"
       :class="{ 'pt-[60px]': !appStore.navStatus }"
