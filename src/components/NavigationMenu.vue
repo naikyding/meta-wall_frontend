@@ -13,7 +13,7 @@ const dropdownToggle = () => {
 
 <template>
   <nav
-    class="menu fixed top-0 left-0 right-0 z-10 grid h-[60px] grid-cols-5 gap-0 border-b-[3px] border-black bg-white px-4 md:px-12 lg:px-0"
+    class="menu fixed top-0 left-0 right-0 grid h-[60px] grid-cols-5 gap-0 border-b-[3px] border-black bg-white px-4 md:px-12 lg:px-0"
   >
     <ul
       class="col-span-5 col-start-1 flex justify-between font-logo lg:col-span-3 lg:col-start-2"
