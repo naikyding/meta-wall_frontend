@@ -234,6 +234,10 @@ export const useLoginStore = defineStore('User Login', {
     googleAuth() {
       location.href = `${import.meta.env.VITE_API_URL}/auth/google`
     },
+
+    facebookAuth() {
+      location.href = `${import.meta.env.VITE_API_URL}/auth/facebook`
+    },
   },
 })
 
