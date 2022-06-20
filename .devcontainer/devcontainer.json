@@ -48,7 +48,9 @@
 		// git
 		"eamodio.gitlens",
 		// 註解函式
-		"lllllllqw.jsdoc"
+		"lllllllqw.jsdoc",
+		"pflannery.vscode-versionlens",
+		"usernamehw.errorlen"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
