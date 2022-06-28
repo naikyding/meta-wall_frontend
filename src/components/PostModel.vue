@@ -163,6 +163,12 @@ const props = defineProps({
                   class="w-full px-4 focus:outline-none"
                   placeholder="留言..."
                   v-model.trim="commentStore.form.content"
+                  @keydown.enter="
+                    commentStore.comment({
+                      postId: likesStore.activePostId,
+                      content: commentStore.form.content,
+                    })
+                  "
                 />
                 <button
                   @click="
