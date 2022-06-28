@@ -7,11 +7,11 @@ const postStore = usePostStore()
   <div class="grid grid-cols-3 gap-3">
     <!-- select -->
     <div
-      class="flex-all-center relative col-span-3 border-2 border-black bg-white sm:col-span-1"
+      class="flex-all-center relative col-span-3 border-2 border-black sm:col-span-1"
     >
       <select
         v-model="postStore.filter.s"
-        class="h-[46px] w-full appearance-none px-4 focus:outline-none"
+        class="h-[46px] w-full appearance-none bg-white px-4 focus:outline-none"
         @change="postStore.getPostsList(postStore.filter.q, postStore.filter.s)"
       >
         <option value="n">最新貼文</option>
