@@ -167,7 +167,13 @@ postStore.getPostsList()
                 type="text"
                 class="w-full px-4 focus:outline-none"
                 placeholder="留言..."
-                v-model="commentStore.form.content"
+                v-model.trim="commentStore.form.content"
+                @keydown.enter="
+                  commentStore.comment({
+                    postId: item._id,
+                    content: commentStore.form.content,
+                  })
+                "
               />
               <button
                 @click="
