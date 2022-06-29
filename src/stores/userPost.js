@@ -4,7 +4,7 @@ import { resStatus } from '../utils/responseHandle'
 import Swal from 'sweetalert2'
 import router from '../router/index'
 
-export const useNewPostStore = defineStore('New Post Store', {
+export const useNewPostStore = defineStore('user post', {
   state: () => ({
     previewImg: {
       url: '',

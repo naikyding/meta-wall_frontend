@@ -1,12 +1,9 @@
 import { defineStore } from 'pinia'
 import { getUserPostListAPI } from '@/api'
 import { resStatus } from '../utils/responseHandle'
-import Swal from 'sweetalert2'
-import { getPostCommentsAPI, followUserToggleAPI } from '@/api'
-import router from '../router'
-import { useFollowsStore } from '../stores/follows'
+import { getPostCommentsAPI } from '@/api'
 
-export const useUserPostsStore = defineStore('User Posts List', {
+export const useUserPostsStore = defineStore('user posts', {
   state: () => ({
     user: {},
     list: [],
@@ -48,28 +45,6 @@ export const useUserPostsStore = defineStore('User Posts List', {
         resStatus(res, this.getPostCommentsSuccess)
       } catch (error) {
         this.getUserPosts()
-      }
-    },
-
-    followUserSuccess(message) {
-      const followsStore = useFollowsStore()
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: message,
-        showConfirmButton: false,
-        timer: 1500,
-      })
-      followsStore.getUserFollowList()
-      this.getUserPosts(router.currentRoute.value.params.id)
-    },
-
-    async followUser(postId) {
-      try {
-        const res = await followUserToggleAPI(postId)
-        resStatus(res, this.followUserSuccess)
-      } catch (error) {
-        console.log(error)
       }
     },
   },
