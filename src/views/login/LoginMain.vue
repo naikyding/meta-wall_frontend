@@ -29,24 +29,30 @@ onUpdated(() => {
 </script>
 
 <template>
-  <div class="mt-0 flex h-full items-center justify-center py-4 md:py-0">
-    <div
-      class="items-center border-2 border-black bg-baseBg p-6 shadow-card md:flex lg:p-10"
-    >
-      <!-- img -->
-      <div
-        class="img mr-0 hidden h-[200px] w-[300px] bg-[url('/images/main.png')] bg-contain bg-center bg-no-repeat md:block md:h-[341px] lg:mr-12 lg:w-[350px]"
-      ></div>
-      <!-- 表單 -->
-      <div class="input-area text-center">
-        <div class="title">
-          <a class="logo font-logo text-3xl text-primary md:text-6xl" href="/"
-            >MetaWall</a
-          >
+  <div class="mt-0 h-full py-4 md:py-0">
+    <div class="fixed inset-0">
+      <div class="flex h-full w-full items-center justify-center">
+        <div
+          class="items-center border-2 border-black bg-baseBg p-6 shadow-card md:flex lg:p-10"
+        >
+          <!-- img -->
+          <div
+            class="img mr-0 hidden h-[200px] w-[300px] bg-[url('/images/main.png')] bg-contain bg-center bg-no-repeat md:block md:h-[341px] lg:mr-12 lg:w-[350px]"
+          ></div>
+          <!-- 表單 -->
+          <div class="input-area text-center">
+            <div class="title">
+              <a
+                class="logo font-logo text-3xl text-primary md:text-6xl"
+                href="/"
+                >MetaWall</a
+              >
+            </div>
+            <component :is="formComponents[loginStore.activeComponentIndex]">
+            </component>
+            <form id="user-data-form" class="flex"></form>
+          </div>
         </div>
-        <component :is="formComponents[loginStore.activeComponentIndex]">
-        </component>
-        <form id="user-data-form" class="flex"></form>
       </div>
     </div>
   </div>
