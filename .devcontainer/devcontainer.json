@@ -50,7 +50,8 @@
 		// 註解函式
 		"lllllllqw.jsdoc",
 		"pflannery.vscode-versionlens",
-		"usernamehw.errorlen"
+		"usernamehw.errorlen",
+		"streetsidesoftware.code-spell-checker"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
