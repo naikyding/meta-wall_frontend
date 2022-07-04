@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed inset-0 flex items-center justify-center text-center text-white"
+    class="fixed inset-0 flex items-center justify-center text-center text-white opacity-60"
   >
     <div class="bg-default p-10">
       <h1 class="text-6xl">404</h1>
