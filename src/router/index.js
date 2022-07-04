@@ -13,6 +13,8 @@ import Likes from '../views/LikesMain.vue'
 import Profile from '../views/profile/ProfileMain.vue'
 import userMain from '../views/UserMain.vue'
 
+import Error404 from '../views/errors/Error404Page.vue'
+
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
@@ -114,6 +116,11 @@ const router = createRouter({
       name: 'forgotPassword',
       component: () => import('../views/login/LoginMain.vue'),
     },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'notFound',
+      component: Error404,
+    },
   ],
 })
 
@@ -126,8 +133,10 @@ router.beforeEach((to, from, next) => {
   if (!userStore.data.id && localUserData) userStore.saveUserData(localUserData)
 
   // 路由驗証
-  if (to.meta.auth && !localStorage.getItem('token'))
+  if (to.meta.auth && !localStorage.getItem('token')) {
+    appStore.routerName = 'login'
     return next({ path: '/login' })
+  }
 
   next()
 })

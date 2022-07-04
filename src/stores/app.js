@@ -22,6 +22,7 @@ export const useAppStore = defineStore('app store', {
         'register',
         'forgotPassword',
         'resetPassword',
+        'notFound',
       ]
       return navDisableRouter.includes(state.routerName)
     },
