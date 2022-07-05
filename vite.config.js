@@ -20,7 +20,7 @@ export default defineConfig({
   server: {
     https: true,
     // 開發端口
-    port: 8080,
+    port: 9527,
 
     // 代理服務
     proxy: {
