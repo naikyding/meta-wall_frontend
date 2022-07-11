@@ -1,5 +1,5 @@
 <script setup>
-import { useProfileMainStore } from '@/stores/profile'
+import { useProfileMainStore } from '@/stores/user'
 import BaseInfo from './TabBaseInfo.vue'
 import Password from './TabPassword.vue'
 

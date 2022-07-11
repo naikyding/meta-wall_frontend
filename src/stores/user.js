@@ -3,8 +3,8 @@ import validator from 'validator'
 import Swal from 'sweetalert2'
 import { resStatus } from '../utils/responseHandle'
 import router from '../router'
+import { forgotPasswordAPI } from '@/api'
 import { authLogin, authLogout } from '../utils/auth'
-import { useProfileMainStore } from './profile'
 
 import {
   userRegisterAPI,
@@ -15,7 +15,7 @@ import {
   resetPasswordAPI,
 } from '@/api'
 
-export const useUserStore = defineStore('user', {
+export const useUserStore = defineStore('user data', {
   state: () => ({
     data: {
       nickname: '',
@@ -56,7 +56,7 @@ export const useUserStore = defineStore('user', {
   },
 })
 
-export const userUserRegister = defineStore('User Register', {
+export const useUserRegister = defineStore('user register', {
   state: () => ({
     form: {
       nickname: '',
@@ -179,7 +179,7 @@ export const userUserRegister = defineStore('User Register', {
   },
 })
 
-export const useLoginStore = defineStore('User Login', {
+export const useLoginStore = defineStore('user login', {
   state: () => ({
     form: {
       email: '',
@@ -241,7 +241,7 @@ export const useLoginStore = defineStore('User Login', {
   },
 })
 
-export const useProfileStore = defineStore('User Profile', {
+export const useProfileStore = defineStore('user profile', {
   state: () => ({
     form: {
       nickname: '',
@@ -338,7 +338,7 @@ export const useProfileStore = defineStore('User Profile', {
   },
 })
 
-export const useUserPassword = defineStore('User Password', {
+export const useUserPassword = defineStore('user password', {
   state: () => ({
     form: {
       password: '',
@@ -428,6 +428,79 @@ export const useUserPassword = defineStore('User Password', {
       try {
         const res = await resetPasswordAPI(form)
         resStatus(res, this.resetPasswordSuccess)
+      } catch (error) {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: error.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      }
+    },
+  },
+})
+
+export const useProfileMainStore = defineStore('user profilie main Store', {
+  state: () => ({
+    activeIndex: 0,
+  }),
+  getters: {
+    tabStyle: (state) => (index) =>
+      state.activeIndex === index
+        ? 'bg-black text-white'
+        : 'bg-white text-black',
+  },
+  actions: {},
+})
+
+export const useForgotPasswordStore = defineStore('Fogot Password Store', {
+  state: () => ({
+    form: {
+      email: '',
+    },
+
+    inputStatus: {
+      email: false,
+    },
+  }),
+  getters: {
+    rules: (state) => ({
+      email: {
+        required: state.inputStatus.email && state.form.email === '',
+
+        validate:
+          state.inputStatus.email &&
+          state.form.email.length > 0 &&
+          !validator.isEmail(state.form.email),
+      },
+    }),
+  },
+  actions: {
+    resetForm() {
+      this.form = {
+        email: '',
+      }
+      this.inputStatus = {
+        email: false,
+      }
+    },
+    submitSuccess(message) {
+      this.resetForm()
+      router.push({ path: '/login' })
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    },
+    async submit(emailForm) {
+      if (!emailForm.email) return (this.inputStatus.email = true)
+      try {
+        const res = await forgotPasswordAPI(emailForm)
+        resStatus(res, this.submitSuccess)
       } catch (error) {
         Swal.fire({
           position: 'center',

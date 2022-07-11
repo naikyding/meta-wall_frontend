@@ -34,6 +34,6 @@
 </template>
 
 <script setup>
-import { useForgotPasswordStore } from '@/stores/forgotPassword'
+import { useForgotPasswordStore } from '@/stores/user'
 const forgotPasswordStore = useForgotPasswordStore()
 </script>

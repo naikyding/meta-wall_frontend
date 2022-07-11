@@ -3,11 +3,11 @@ import LoginForm from './loginForm.vue'
 import registerForm from './registerForm.vue'
 import forgotPassword from './ForgotPassword.vue'
 import resetPassword from './ResetPassword.vue'
-import { useLoginStore } from '@/stores/login'
+import { useLoginMainStore } from '@/stores/app'
 import { onMounted, onUpdated } from 'vue'
 import { useRoute } from 'vue-router'
 
-const loginStore = useLoginStore()
+const loginStore = useLoginMainStore()
 const route = useRoute()
 const formComponents = [LoginForm, registerForm, forgotPassword, resetPassword]
 const checkComponentActive = (routerName) => {
@@ -43,7 +43,7 @@ onUpdated(() => {
           <div class="input-area text-center">
             <div class="title">
               <a
-                class="logo font-logo text-3xl text-primary md:text-6xl"
+                class="logo font-logo text-3xl font-[900] text-primary md:text-6xl"
                 href="/"
                 >MetaWall</a
               >

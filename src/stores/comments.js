@@ -7,7 +7,7 @@ import { usePostStore } from './posts'
 import router from '../router'
 import { useUserPostsStore } from './userPosts'
 
-export const useCommentStore = defineStore('Comment Store', {
+export const useCommentStore = defineStore('user comments', {
   state: () => ({
     form: {
       content: null,

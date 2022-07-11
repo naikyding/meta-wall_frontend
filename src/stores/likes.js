@@ -6,7 +6,7 @@ import { useUserPostsStore } from '@/stores/userPosts'
 import Swal from 'sweetalert2'
 import router from '../router'
 
-export const useLikesStore = defineStore('Likes', {
+export const useLikesStore = defineStore('user likes', {
   state: () => ({
     list: [], // 跟隨名單
     activePostId: null,
