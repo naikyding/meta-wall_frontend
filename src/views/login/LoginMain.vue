@@ -43,7 +43,7 @@ onUpdated(() => {
           <div class="input-area text-center">
             <div class="title">
               <a
-                class="logo font-logo text-3xl text-primary md:text-6xl"
+                class="logo font-logo text-3xl font-[900] text-primary md:text-6xl"
                 href="/"
                 >MetaWall</a
               >
