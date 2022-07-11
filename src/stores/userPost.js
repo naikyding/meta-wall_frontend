@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
-import { creatPostAPI } from '@/api'
+import { createPostAPI } from '@/api'
 import { resStatus } from '../utils/responseHandle'
 import Swal from 'sweetalert2'
 import router from '../router/index'
 
-export const useNewPostStore = defineStore('New Post Store', {
+export const useNewPostStore = defineStore('user post', {
   state: () => ({
     previewImg: {
       url: '',
@@ -87,7 +87,7 @@ export const useNewPostStore = defineStore('New Post Store', {
 
       if (this.previewImg.buffer) form.append('image', this.previewImg.buffer)
 
-      const res = await creatPostAPI(form)
+      const res = await createPostAPI(form)
       resStatus(res, this.submitPostSuccess, this.submitPostError)
     },
   },

@@ -106,7 +106,7 @@
 </template>
 
 <script setup>
-import { userUserRegister } from '@/stores/user'
+import { useUserRegister } from '@/stores/user'
 
-const userRegisterStore = userUserRegister()
+const userRegisterStore = useUserRegister()
 </script>

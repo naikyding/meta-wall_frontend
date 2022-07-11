@@ -1,6 +1,6 @@
 import {
   getPostsList,
-  creatPost,
+  createPost,
   commentPost,
   getPostComments,
   getUserPostList,
@@ -20,7 +20,7 @@ import {
 } from './user'
 
 export const getPostsListAPI = getPostsList
-export const creatPostAPI = creatPost
+export const createPostAPI = createPost
 export const commentPostAPI = commentPost
 export const getPostCommentsAPI = getPostComments
 export const getUserPostListAPI = getUserPostList

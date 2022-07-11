@@ -7,7 +7,7 @@ const routerTitle = {
   profile: '修改個人資料',
 }
 
-export const useAppStore = defineStore('App Store', {
+export const useAppStore = defineStore('app store', {
   state: () => ({
     routerName: '',
     disableMemberItem: true,
@@ -22,6 +22,7 @@ export const useAppStore = defineStore('App Store', {
         'register',
         'forgotPassword',
         'resetPassword',
+        'notFound',
       ]
       return navDisableRouter.includes(state.routerName)
     },
@@ -30,4 +31,12 @@ export const useAppStore = defineStore('App Store', {
     },
   },
   actins: {},
+})
+
+export const useLoginMainStore = defineStore('login main', {
+  state: () => ({
+    activeComponentIndex: 0,
+  }),
+  getters: {},
+  actions: {},
 })

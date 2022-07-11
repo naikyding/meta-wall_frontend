@@ -1,6 +1,5 @@
 <script setup>
 import FilterPostByUser from '@/components/FilterPostByUser.vue'
-import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useFollowsStore } from '../stores/follows'
 import { useUserStore } from '../stores/user'
@@ -34,7 +33,7 @@ followSotre.getUserFollowList()
       </div>
       <button
         v-if="!selfPage"
-        @click="userPosts.followUser({ followUserId: userId })"
+        @click="followSotre.followUser({ followUserId: userId })"
         class="rounded-lg border-2 border-black px-8 py-1 font-bold shadow-post"
         :class="[
           followSotre.isFollows

@@ -76,6 +76,6 @@
 </template>
 
 <script setup>
-import { useNewPostStore } from '@/stores/newPost'
+import { useNewPostStore } from '@/stores/userPost'
 const newPost = useNewPostStore()
 </script>

@@ -2,7 +2,7 @@ module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     colors: {
-      primary: '#03438D',
+      primary: '#4965DB',
       secondary: '#EEC32A',
       default: '#9B9893',
       baseBg: '#EFECE7',
@@ -11,7 +11,7 @@ module.exports = {
       error: '#F57375',
     },
     fontFamily: {
-      logo: ['Paytone One'],
+      logo: ['Noto Sans TC'],
       dec: ['Helvetica Neue'],
       input: ['Azeret Mono'],
     },

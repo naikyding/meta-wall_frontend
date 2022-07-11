@@ -4,7 +4,7 @@ import { resStatus } from '../utils/responseHandle'
 import Swal from 'sweetalert2'
 import router from '../router'
 
-export const usePostStore = defineStore('Post', {
+export const usePostStore = defineStore('posts list', {
   state: () => ({
     list: [],
     filter: {

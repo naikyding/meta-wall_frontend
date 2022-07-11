@@ -16,10 +16,10 @@ const dropdownToggle = () => {
     class="menu fixed top-0 left-0 right-0 grid h-[60px] grid-cols-5 gap-0 border-b-[3px] border-black bg-white px-4 md:px-12 lg:px-0"
   >
     <ul
-      class="col-span-5 col-start-1 flex justify-between font-logo lg:col-span-3 lg:col-start-2"
+      class="col-span-5 col-start-1 flex justify-between lg:col-span-3 lg:col-start-2"
     >
       <li class="my-auto">
-        <a href="/" class="text-2xl text-black">MetaWall</a>
+        <a href="/" class="font-logo text-2xl font-[900]">MetaWall</a>
       </li>
       <li class="relative my-auto">
         <button class="relative flex" @click="dropdownToggle">
