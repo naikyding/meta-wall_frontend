@@ -22,6 +22,10 @@
 - Imgur 圖床串接
 - MongoDB for database
 
+| Google Login | Facebook Login | 
+| -------- | -------- | 
+| ![](https://i.imgur.com/DAu20oT.gif)     | ![](https://i.imgur.com/xwAfMDF.gif)     | 
+
 ## Getting Started
 ### Tools & Versions
 
