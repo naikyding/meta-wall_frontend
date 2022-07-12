@@ -11,6 +11,7 @@
 - **MongoDB ∙ Mongoose** database
 - **Remote Container Develop** (VSCODE.Docker)
 
+![](https://i.imgur.com/DAu20oT.gif)
 
 ## Implementation Highlights
 - Single page application web client with Vue3 & Pinia
