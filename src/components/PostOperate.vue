@@ -24,7 +24,8 @@
       <!-- popup -->
       <ul
         :data-post="props.postId"
-        class="popup border-1 absolute right-0 hidden min-w-[150px] rounded border bg-white p-1"
+        class="popup border-1 absolute right-0 hidden min-w-[150px] rounded border border-[#bbb] bg-white p-1"
+        @mouseleave="deletePost.popUpDisplayToggle(props.postId)"
       >
         <!-- 加入追蹤 (先判斷是否已加入追蹤) -->
         <li
