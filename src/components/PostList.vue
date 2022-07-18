@@ -5,6 +5,8 @@ import { useLikesStore } from '../stores/likes'
 import { dayToNow, day } from '../utils/day'
 import { useCommentStore } from '../stores/comments'
 import { RouterLink } from 'vue-router'
+import Operate from './PostOperate.vue'
+
 const userStore = useUserStore()
 const postStore = usePostStore()
 const likesStore = useLikesStore()
@@ -38,7 +40,7 @@ postStore.getPostsList()
       class="mt-4 w-full rounded-lg border-2 border-black bg-white p-6 shadow-post"
     >
       <!-- 貼文者 -->
-      <div class="post-user flex items-center">
+      <div class="post-user relative flex items-center">
         <!-- 頭像 -->
         <div class="avatar item mr-4 h-[45px] w-[45px] overflow-hidden">
           <RouterLink :to="{ path: `/user/${item.user._id}` }">
@@ -58,8 +60,11 @@ postStore.getPostsList()
               {{ item.user?.nickname }}
             </RouterLink>
           </p>
-          <p class="text-xs text-[#9B9893]">{{ day(item.createdAt) }}</p>
+          <p class="text-xs text-[#c3bfb9]">{{ day(item.createdAt) }}</p>
         </div>
+
+        <!-- 操作 -->
+        <Operate :post-id="item._id" :user-id="item.user._id" />
       </div>
 
       <details
