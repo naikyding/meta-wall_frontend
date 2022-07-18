@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia'
-import { createPostAPI } from '@/api'
+import { createPostAPI, deleteSelfPostAPI } from '@/api'
 import { resStatus } from '../utils/responseHandle'
 import Swal from 'sweetalert2'
 import router from '../router/index'
+import { usePostStore } from './posts'
+import { useUserPostsStore } from './userPosts'
 
 export const useNewPostStore = defineStore('user post', {
   state: () => ({
@@ -89,6 +91,54 @@ export const useNewPostStore = defineStore('user post', {
 
       const res = await createPostAPI(form)
       resStatus(res, this.submitPostSuccess, this.submitPostError)
+    },
+  },
+})
+
+export const useDeletePost = defineStore('Delete Post', {
+  state: () => ({}),
+
+  getters: {},
+
+  actions: {
+    deletePostItemSuccess(message) {
+      const postsStore = usePostStore()
+      const userPostStore = useUserPostsStore()
+
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+
+      postsStore.getPostsList()
+      userPostStore.getUserPosts(router.currentRoute.value.params.id)
+    },
+
+    deletePostItemFail({ message }) {
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: message,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      router.replace({ path: '/login' })
+    },
+
+    async deletePostItem(postId) {
+      this.popUpDisplayToggle(postId)
+      const res = await deleteSelfPostAPI(postId)
+      resStatus(res, this.deletePostItemSuccess)
+    },
+
+    popUpDisplayToggle(postId) {
+      const el = document.querySelector(`ul[data-post='${postId}']`)
+      const elClassList = el.classList
+      elClassList.toggle('block')
+      elClassList.toggle('hidden')
     },
   },
 })
