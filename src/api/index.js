@@ -4,8 +4,11 @@ import {
   commentPost,
   getPostComments,
   getUserPostList,
+  deleteSelfPost,
 } from './posts'
+
 import { getUserFollows } from './follows'
+
 import {
   userRegister,
   userLogin,
@@ -24,6 +27,7 @@ export const createPostAPI = createPost
 export const commentPostAPI = commentPost
 export const getPostCommentsAPI = getPostComments
 export const getUserPostListAPI = getUserPostList
+export const deleteSelfPostAPI = deleteSelfPost
 
 export const userRegisterAPI = userRegister
 export const userLoginAPI = userLogin
