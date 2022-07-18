@@ -135,7 +135,9 @@ export const useDeletePost = defineStore('Delete Post', {
     },
 
     popUpDisplayToggle(postId) {
-      const el = document.querySelector(`ul[data-post='${postId}']`)
+      const el = document.querySelector(`ul[data-post="${postId}"]`)
+      if (!el) return false
+
       const elClassList = el.classList
       elClassList.toggle('block')
       elClassList.toggle('hidden')
