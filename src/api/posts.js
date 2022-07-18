@@ -16,3 +16,5 @@ export const getUserPostList = (postId, q = '', s = 'n') =>
 
 export const getPostComments = (postId) =>
   request.get(`/post/comments/${postId}`)
+
+export const deleteSelfPost = (postId) => request.delete(`/post/${postId}`)
