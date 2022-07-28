@@ -22,6 +22,8 @@ import {
   resetPassword,
 } from './user'
 
+import { linePay } from './payment'
+
 export const getPostsListAPI = getPostsList
 export const createPostAPI = createPost
 export const commentPostAPI = commentPost
@@ -44,3 +46,5 @@ export const toggleUserLikesAPI = toggleUserLikes
 export const followUserToggleAPI = followUserToggle
 export const forgotPasswordAPI = forgotPassword
 export const resetPasswordAPI = resetPassword
+
+export const linePayAPI = linePay
