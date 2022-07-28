@@ -4,7 +4,7 @@ import NavigationMenu from '@/components/NavigationMenu.vue'
 import { useAppStore } from './stores/app'
 import BottomNavigation from '@/components/BottomNavigation.vue'
 import LoadingCircle from '@/components/LoadingCircle.vue'
-
+import SponsorUs from '@/components/SponsorUs.vue'
 const appStore = useAppStore()
 </script>
 
@@ -20,6 +20,7 @@ const appStore = useAppStore()
       :class="{ 'pt-[60px]': !appStore.navStatus }"
     />
     <BottomNavigation :class="{ hidden: appStore.navStatus }" />
+    <SponsorUs />
   </div>
 </template>
 
