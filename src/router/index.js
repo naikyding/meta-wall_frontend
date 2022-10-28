@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import MetaHome from '../views/MetaHome.vue'
 import { useAppStore } from '../stores/app'
 import { useUserStore } from '../stores/user'
@@ -16,7 +16,7 @@ import userMain from '../views/UserMain.vue'
 import Error404 from '../views/errors/Error404Page.vue'
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',
