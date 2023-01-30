@@ -4,6 +4,7 @@ import NavigationMenu from '@/components/NavigationMenu.vue'
 import { useAppStore } from './stores/app'
 import BottomNavigation from '@/components/BottomNavigation.vue'
 import LoadingCircle from '@/components/LoadingCircle.vue'
+
 const appStore = useAppStore()
 </script>
 
